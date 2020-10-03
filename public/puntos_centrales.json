@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"name": "RESISTIRE",
+"CenterPoint": { "yauyos":                  {  "lat" :  -11.7811, "lng" : -75.4992 },
+                 "el agustino":             {  "lat" : -12.034840, "lng" : -76.986157 },
+                 "san juan de lurigancho":  {  "lat" : -11.978963, "lng" : -76.992415 },
+                 "santa anita":             {  "lat" : -12.042518, "lng" : -76.971151},
+                 "la victoria":             {  "lat" : -12.071807, "lng" : -77.016990 },
+                 "ate":                     {  "lat" : -12.0261, "lng" : -76.9192 },
+                 "la molina":               {  "lat" : -12.086045, "lng" : -76.928473 }
+
+
+} 
+    
+}
+
