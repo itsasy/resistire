@@ -2,15 +2,15 @@
 @section ('title', 'Registrar punto de ayuda')
 @section('content')
 <div class="container-fluid pt-5 bg_grad_h h_header">
-    <div class="position-fixed mb-1 z_i_1 ">
+    {{-- <div class="position-fixed mb-1 z_i_1 ">
         <button type="button" class="btn btn_circl_outl_p rounded-circle" data-toggle="modal" data-target="#modal" title="Agregar Categoría">
             <i class="fas fa-plus"></i>
         </button>
-    </div>
+    </div> --}}
     <div class="col d-flex flex-column align-items-center">
-        <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">SEGURIDAD ALIMENTARIA
+        <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">REGISTRANDO SEGURIDAD ALIMENTARIA
         </h4>
-        <form action="{{route('savePoint')}}" method="POST" enctype="multipart/form-data"
+        <form action="{{route('alimentos.store')}}" method="POST" enctype="multipart/form-data"
             class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation"
             novalidate>
             {{ csrf_field() }}
@@ -18,9 +18,7 @@
                 <div class="d-flex justify-content-center mb-2">
                     <p
                         class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
-                        Datos del lugar</p>
-                    <p class="text-secondary" id="district" hidden>{{-- {{$district}} --}}</p>
-
+                        Datos del Artículo</p>
                 </div>
                 <div class="subarea_reg rounded_1 pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
                     <div class="form-row d-flex justify-content-center">
@@ -39,15 +37,12 @@
                             <div class="valid-feedback">Descripción ingresada</div>
                         </div>
                         <div class="form-group col-lg-12">
-                            <label for="nws_type">Categoría</label>
-                            <select name="nws_type" class="form-control rounded_1" required>
+                            <label for="fds_id_fdst">Categoría</label>
+                            <select name="fds_id_fdst" class="form-control rounded_1" required>
                                 <option value="#" selected disabled>Seleccione</option>
-                                <option value="1">Desinfecta bien tus alimentos</option>
-                                <option value="2">Conserva tus alimentos</option>
-                                <option value="3">Alimentación sencilla y saludable</option>
-                                <option value="4">Mejora tu sistema inmunológico</option>
-                                <option value="5">Mercados seguros</option>
-                                <option value="5">Protocolo de Bioseguridad</option>
+                                @foreach ($types as $tipo)
+                                <option value="{{$tipo->id}}">{{$tipo->fdst_desc}}</option>
+                                @endforeach
                             </select>
                             <div class="invalid-feedback">Seleccione categoría</div>
                             <div class="valid-feedback">Categoría seleccionada</div>

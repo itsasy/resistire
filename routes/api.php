@@ -92,3 +92,7 @@ Route::group(['prefix' => 'companies'], function(){
 
 Route::get('/imageCompanie/{fileName}', 'companiesController@imageCompanie');
 
+
+Route::apiResource('/foodsafety', 'API\foodSafetyController');
+Route::apiResource('/types_foodsafety', 'API\foodsafetyTypesController');
+

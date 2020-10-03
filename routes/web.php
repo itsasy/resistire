@@ -71,8 +71,10 @@ Route::group(['prefix' => 'asociados'], function () {
 });
 
 Route::resource('alimentos', 'foodSafetyController');
+Route::resource('tipo_alimentos', 'foodSafetyTypesController');
 Route::get('/toChart', 'adminController@toChart');
 
-Route::view('alimento', 'regFoodSafety');
+/* Route::view('alimento', 'regFoodSafety');
 Route::view('type', 'typesFoodSafety');
 Route::view('list', 'listFoodSafety');
+ */

@@ -9,14 +9,13 @@
     </div>
 </div>
 @endsection
-
 @section('content')
 <div class="col-12 d-flex justify-content-center mt-2">
     <div class="position-fixed mb-1 z_i_1 justify-content-left col-12">
         <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('alimentos.create')}}" role="button"
             title="Nuevo"><i class="fas fa-plus"></i></a>
-        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{URL::previous()}}" role="button"
-            title="Nuevo"><i class="fas fa-arrow-left"></i></a>
+        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="#" role="button" title="Atrás"><i
+                class="fas fa-arrow-left"></i></a>
     </div>
     <div class="container">
         <div class="row">
@@ -24,7 +23,7 @@
             <div class="col-lg-4">
                 <div class="card mb-3 card_reveal_effect_rotate_y rounded_1 shadow">
                     <div class="inner-img rounded_t_1">
-                        <img src="http://34.226.78.219:8080/api_covid19/public/api/imgPoints/{{$element->fds_img}}"
+                        <img src="{{url("storage/foodSafety/"). '/'.$element->fds_img}}"
                             onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}'"
                             class="card-img-top rounded_t_1 img_reg" alt="atp_img">
                     </div>
@@ -49,9 +48,15 @@
                         <a name="" id="" class="btn btn_circl_outl_p m-1"
                             href="{{route('alimentos.edit', $element->id)}}" role="button" title="Editar"><i
                                 class="fas fa-pen"></i></a>
-                        <a name="" id="" class="btn btn_circl_outl_p m-1"
-                            href="{{route('alimentos.destroy', $element->id)}}" role="button" title="Eliminar"><i
-                                class="fas fa-times"></i></a>
+
+                        <form action="{{route('alimentos.destroy', $element->id)}}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn_circl_outl_p m-1">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>
