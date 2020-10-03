@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class foodSafetyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data = tb_foodsafety_types::paginate(8);
@@ -28,7 +33,7 @@ class foodSafetyController extends Controller
     {
         $user = ['fds_id_usr' => auth()->user()->id];
 
-        $article = tb_foodsafety::create($request->all(), $user);
+        $article = tb_foodsafety::create($request->all() + $user);
 
         if ($request->fds_img) {
             $this->save_image($request->fds_img, $article);

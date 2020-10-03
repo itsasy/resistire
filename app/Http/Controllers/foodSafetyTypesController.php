@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class foodSafetyTypesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function store(Request $request)
     {
         tb_foodsafety_types::create($request->all());
