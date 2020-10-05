@@ -6,12 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class tb_foodsafety extends Model
 {
-    protected $table = "tb_foodsafety";
+    protected $table = 'tb_foodsafety';
 
-    protected $fillable = ['fds_id_usr', 'fds_id_fdst', 'fds_title', 'fds_desc', 'fds_source', 'fds_url', 'fds_youtube', 'fds_instagram', 'fds_facebook', 'fds_img', 'fds_date'];
+    protected $guarded = [];
 
-    public function foodsafetyTypes()
+    protected $casts = [
+        'id' => 'integer',
+        'fds_enable' => 'boolean',
+        'fds_id_usr' => 'integer',
+        'fds_id_fdst' => 'integer',
+    ];
+
+    /* protected $dates = [
+        'fds_date',
+    ]; */
+
+
+    public function tb_user()
     {
-        return $this->belongsTo('App\Models\tb_foodsafety_types', 'fds_id_fdst', 'id');
+        return $this->belongsTo(\App\Models\tb_users::class);
+    }
+
+    public function foodsafety_type()
+    {
+        return $this->belongsTo(\App\Model\tb_foodsafety_types::class);
     }
 }

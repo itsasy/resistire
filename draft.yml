@@ -1,0 +1,19 @@
+models:
+  tb_foodsafety:
+    fds_title: string
+    slug: string unique
+    fds_desc: longtext
+    fds_source: string
+    fds_url: string
+    fds_youtube: string
+    fds_instagram: string
+    fds_facebook: string
+    fds_img: string
+    fds_date: date
+    fds_enable: boolean
+    fds_id_usr: id
+    fds_id_fdst: id
+  tb_foodsafety_types:
+    fdst_desc: longtext
+    relationships:
+      hasMany: tb_foodsafety
