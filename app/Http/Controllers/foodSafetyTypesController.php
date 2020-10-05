@@ -14,7 +14,9 @@ class foodSafetyTypesController extends Controller
     
     public function store(Request $request)
     {
-        tb_foodsafety_types::create($request->all());
+        $user = ['fdst_id_usr' => auth()->user()->id, 'fdst_id_dst' => auth()->user()->usr_id_dst];
+
+        tb_foodsafety_types::create($request->all() + $user);
 
         return back()->with('message', 'Se ha creado correctamente');
     }

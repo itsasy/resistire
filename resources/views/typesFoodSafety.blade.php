@@ -12,13 +12,13 @@
         <i class="fas fa-plus"></i>
     </button>
 
-    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="#" role="button" title="Nuevo"><i
+    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('Index')}}" role="button" title="Nuevo"><i
             class="fas fa-arrow-left"></i></a>
 </div>
 
 <div class="col-12 d-flex justify-content-center mt-2">
     <div class="row col-10">
-        @foreach ($data as $type)
+        @forelse ($data as $type)
         <div class="col-12 col-md-4 col-lg-6 mb-1">
            {{--  <div class="position-fixed mb-1 z_i_1 col-11">
                 <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="#" role="button"
@@ -32,7 +32,11 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="container">
+            <h1 class="text-center text-primary">No existen categorías para mostrar, por favor cree una.</h1>
+        </div>
+        @endforelse
     </div>
 
     <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">

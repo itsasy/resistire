@@ -96,5 +96,5 @@ Route::get('/imageCompanie/{fileName}', 'companiesController@imageCompanie');
 Route::apiResource('/foodsafety', 'API\foodSafetyController');
 Route::get('/foodsafety_dst/{dst}', 'API\foodSafetyController@articles_by_district');
 Route::apiResource('/types_foodsafety', 'API\foodSafetyTypesController');
-Route::apiResource('/types_foodsafety_dst/{dst}', 'API\foodSafetyTypesController@types_by_district');
+Route::get('/types_foodsafety_dst/{dst}', 'API\foodSafetyTypesController@types_by_district');
 

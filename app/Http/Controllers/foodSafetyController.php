@@ -17,22 +17,22 @@ class foodSafetyController extends Controller
     
     public function index()
     {
-        $data = tb_foodsafety_types::paginate(8);
+        $data = tb_foodsafety_types::where('fdst_id_dst', auth()->user()->usr_id_dst)->paginate(8);
 
         return view('typesFoodSafety', compact('data'));
     }
 
     public function create()
     {
-        $types = tb_foodsafety_types::all();
+        $types = tb_foodsafety_types::where('fdst_id_dst', auth()->user()->usr_id_dst)->get();
 
         return view('regFoodSafety', compact('types'));
     }
 
     public function store(Request $request)
     {
-        $user = ['fds_id_usr' => auth()->user()->id];
-
+        $user = ['fds_id_usr' => auth()->user()->id, 'fds_id_dst' => auth()->user()->usr_id_dst];
+        
         $article = tb_foodsafety::create($request->all() + $user);
 
         if ($request->fds_img) {
@@ -57,7 +57,7 @@ class foodSafetyController extends Controller
     public function edit($id)
     {
         $article = tb_foodsafety::findOrFail($id);
-        $types = tb_foodsafety_types::all();
+        $types = tb_foodsafety_types::where('fdst_id_dst', auth()->user()->usr_id_dst)->get();
 
         return view('updateFoodSafety', compact('article', 'types'));
     }
