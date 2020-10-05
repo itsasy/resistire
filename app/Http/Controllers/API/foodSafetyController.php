@@ -94,4 +94,11 @@ class foodSafetyController extends Controller
 
         return $name;
     }
+    
+    public function articles_by_district($dst)
+    {
+        $articles = tb_foodsafety::where('fds_id_dst', $dst)->get();
+
+        return $articles;
+    }
 }

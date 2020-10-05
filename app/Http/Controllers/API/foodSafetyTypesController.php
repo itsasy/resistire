@@ -59,4 +59,11 @@ class foodSafetyTypesController extends Controller
             'message' => $status ? 'Eliminado correctamente' : null
         ]);
     }
+    
+    public function types_by_district($dst)
+    {
+        $articles = tb_foodsafety_types::where('fds_id_dst', $dst)->get();
+
+        return $articles;
+    }
 }
