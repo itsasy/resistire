@@ -87,7 +87,8 @@ Route::get("/json", 'departmentController@obtenerUbicacion');
 Route::get('/generalPoints', 'pointsController@showGeneralPoints');
 
 Route::group(['prefix' => 'companies'], function(){
-   Route::get('/{idDistrict}','companiesController@index');
+   Route::get('/{district}','companiesController@companies_by_district');
+   Route::get('/{district}/{type}', 'companiesController@companies_district_and_type');
 });
 
 Route::get('/imageCompanie/{fileName}', 'companiesController@imageCompanie');

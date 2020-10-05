@@ -459,13 +459,13 @@ class adminController extends Controller
         if (session()->exists('autenticacion')) {
             return redirect()->route('MapAsociates',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
         }
-        //return view('mapAsociates');
     }
     
     public function MapaAsociates($district, $iddistrict, $provincia)
     {
         return view('mapAsociates', compact('district', 'iddistrict', 'provincia'));
     }
+    
     public function regCompanies()
     {
         return view('regCompanies');
