@@ -87,11 +87,13 @@ Route::get("/json", 'departmentController@obtenerUbicacion');
 Route::get('/generalPoints', 'pointsController@showGeneralPoints');
 
 Route::group(['prefix' => 'companies'], function(){
-   Route::get('/{district}','companiesController@companies_by_district');
-   Route::get('/{district}/{type}', 'companiesController@companies_district_and_type');
+    Route::get('/', 'companiesController@index');
+    Route::get('/{id}', 'companiesController@show');
+    Route::get('/district/{district}','companiesController@companies_by_district');
+    Route::get('/{district}/{type}', 'companiesController@companies_by_district_and_type');
 });
 
-Route::get('/imageCompanie/{fileName}', 'companiesController@imageCompanie');
+Route::get('/imageCompany/{fileName}', 'companiesController@imageCompanie');
 
 
 Route::apiResource('/foodsafety', 'API\foodSafetyController');
