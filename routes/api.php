@@ -100,4 +100,4 @@ Route::apiResource('/foodsafety', 'API\foodSafetyController');
 Route::get('/foodsafety_dst/{dst}', 'API\foodSafetyController@articles_by_district');
 Route::apiResource('/types_foodsafety', 'API\foodSafetyTypesController');
 Route::get('/types_foodsafety_dst/{dst}', 'API\foodSafetyTypesController@types_by_district');
-
+Route::get('/food_safety/{type}', 'API\foodSafetyController@articles_by_type');

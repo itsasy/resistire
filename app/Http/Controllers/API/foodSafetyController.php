@@ -101,4 +101,11 @@ class foodSafetyController extends Controller
 
         return $articles;
     }
+    
+    public function articles_by_type($type)
+    {
+        $articles = tb_foodsafety::where('fds_id_fdst', $type)->get();
+
+        return $articles;
+    }
 }
