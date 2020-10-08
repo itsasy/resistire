@@ -62,7 +62,7 @@ class foodSafetyTypesController extends Controller
     
     public function types_by_district($dst)
     {
-        $articles = tb_foodsafety_types::where('fds_id_dst', $dst)->get();
+        $articles = tb_foodsafety_types::where('fdst_id_dst', $dst)->get();
 
         return $articles;
     }
