@@ -10,7 +10,7 @@ class foodSafetyTypesController extends Controller
 {
     public function index()
     {
-        return tb_foodsafety_types::all();
+        return tb_foodsafety_types::with('info_district')->get();
     }
 
     public function store(Request $request)

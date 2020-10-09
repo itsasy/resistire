@@ -18,8 +18,7 @@
               @endif
       </h4>
       <form action="{{route('saveNews')}}" method="POST" enctype="multipart/form-data"
-        class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation"
-        >
+        class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation">
         {{ csrf_field() }}
         <div class="py-3">
           <div class="d-flex justify-content-center mb-2">

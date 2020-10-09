@@ -11,13 +11,11 @@
         <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">REGISTRANDO SEGURIDAD ALIMENTARIA
         </h4>
         <form action="{{route('alimentos.store')}}" method="POST" enctype="multipart/form-data"
-            class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation"
-            novalidate>
+            class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation">
             {{ csrf_field() }}
             <div class="py-3">
                 <div class="d-flex justify-content-center mb-2">
-                    <p
-                        class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
+                    <p class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
                         Datos del Artículo</p>
                 </div>
                 <div class="subarea_reg rounded_1 pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
@@ -95,14 +93,13 @@
                             <div class="valid-feedback">Fecha ingresada</div>
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="fds_img">Imagen</label>
-                            <input type="file" class="form-control-file" name="fds_img" id="fds_img">
-                            <div class="invalid-feedback">Seleccione imagen</div>
-                            <div class="valid-feedback">Imagen seleccionada</div>
-                            <div class="d-flex justify-content-center pt-3">
-                                <img src="{{asset('images/img_default.png')}}"
-                                    class="img-fluid rounded_1 img_reg shadow_light" id="img_output_01" alt="">
-                            </div>
+                        <label for="nws_image">Imagen</label>
+                        <input type="file" class="form-control-file" name="fds_img" id="img" required>
+                        <div class="invalid-feedback">Seleccione imagen</div>
+                        <div class="valid-feedback">Imagen seleccionada</div>
+                        <div class="d-flex justify-content-center pt-3">
+                          <img src="{{asset('images/img_default.png')}}" class="img-fluid rounded_1 img_reg shadow_light"
+                            id="img_output_01" alt="">
                         </div>
                     </div>
                 </div>
@@ -138,4 +135,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('js/script.js')}}"></script>
 @endsection

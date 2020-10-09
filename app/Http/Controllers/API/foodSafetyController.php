@@ -11,7 +11,7 @@ class foodSafetyController extends Controller
 {
     public function index()
     {
-        return tb_foodsafety::all();
+        return tb_foodsafety::with('info_district')->get();
     }
 
     public function store(Request $request)
@@ -97,14 +97,14 @@ class foodSafetyController extends Controller
     
     public function articles_by_district($dst)
     {
-        $articles = tb_foodsafety::where('fds_id_dst', $dst)->get();
+        $articles = tb_foodsafety::where('fds_id_dst', $dst)->with('info_district')->get();
 
         return $articles;
     }
     
     public function articles_by_type($type)
     {
-        $articles = tb_foodsafety::where('fds_id_fdst', $type)->get();
+        $articles = tb_foodsafety::where('fds_id_fdst', $type)->with('info_foodsafetyTypes')->with('info_district')->get();
 
         return $articles;
     }
