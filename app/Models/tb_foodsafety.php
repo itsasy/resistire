@@ -21,14 +21,13 @@ class tb_foodsafety extends Model
         'fds_date',
     ]; */
 
-
-    public function tb_user()
+    public function user()
     {
         return $this->belongsTo(\App\Models\tb_users::class);
     }
 
-    public function foodsafety_type()
+    public function type()
     {
-        return $this->belongsTo(\App\Model\tb_foodsafety_types::class);
+        return $this->belongsTo(\App\Models\tb_foodsafety_types::class);
     }
 }

@@ -1,10 +1,12 @@
 created:
-    - database/factories/TbFoodsafetyFactory.php
-    - database/factories/TbFoodsafetyTypesFactory.php
-    - database/migrations/2020_10_05_013223_create_tb_foodsafeties_table.php
-    - database/migrations/2020_10_05_013224_create_tb_foodsafety_types_table.php
-    - app/Model/tb_foodsafety.php
-    - app/Model/tb_foodsafety_types.php
+    - database/factories/TbCompaniesFactory.php
+    - database/factories/TbCompanyTypesFactory.php
+    - database/migrations/2020_10_07_222114_create_tb_companies_table.php
+    - database/migrations/2020_10_07_222115_create_tb_company_types_table.php
+    - app/Models/tb_companies.php
+    - app/Models/tb_company_types.php
 models:
     tb_foodsafety: { fds_title: string, slug: 'string unique', fds_desc: longtext, fds_source: string, fds_url: string, fds_youtube: string, fds_instagram: string, fds_facebook: string, fds_img: string, fds_date: date, fds_enable: boolean, fds_id_usr: id, fds_id_fdst: id }
     tb_foodsafety_types: { fdst_desc: longtext, relationships: { hasMany: tb_foodsafety } }
+    tb_companies: { cmp_name: string, cmp_img: string, cmp_latitude: string, cmp_longitude: string, cmp_address: string, cmp_url: string, cmp_instagram: string, fds_facebook: string, fds_state: boolean, cmp_id_usr: 'id:tb_users', cmp_id_dst: id, cmp_id_cmpt: id, relationships: { hasOne: 'tb_district, tb_company_types' } }
+    tb_company_types: { cmpt_desc: longtext }

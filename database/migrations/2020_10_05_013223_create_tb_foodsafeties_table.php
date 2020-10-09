@@ -32,6 +32,8 @@ class CreateTbFoodsafetiesTable extends Migration
             $table->foreign('fds_id_usr')->references('id')->on('tb_users')->onDelete('cascade');
             $table->unsignedBigInteger('fds_id_fdst');
             $table->foreign('fds_id_fdst')->references('id')->on('tb_foodsafety_types')->onDelete('cascade');
+            $table->unsignedBigInteger('fds_id_dst');
+            $table->foreign('fds_id_dst')->references('id')->on('tb_districts')->onDelete('cascade');
             $table->timestamps();
         });
 

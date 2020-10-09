@@ -12,7 +12,7 @@ class CreateSafetyTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    function can_create_a_article_without_image()
+    function can_create_an_article_without_image()
     {
         $this->withoutExceptionHandling();
 
@@ -42,7 +42,7 @@ class CreateSafetyTest extends TestCase
             ]);
     }
     /** @test */
-    function can_create_a_article_with_image()
+    function can_create_an_article_with_image()
     {
         $this->withoutExceptionHandling();
 

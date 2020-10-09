@@ -17,6 +17,10 @@ class CreateTbFoodsafetyTypesTable extends Migration
 
         Schema::create('tb_foodsafety_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('fdst_id_usr');
+            $table->foreign('fdst_id_usr')->references('id')->on('tb_users')->onDelete('cascade');
+            $table->unsignedBigInteger('fdst_id_dst');
+            $table->foreign('fdst_id_dst')->references('id')->on('tb_districts')->onDelete('cascade');
             $table->longText('fdst_desc');
             $table->timestamps();
         });

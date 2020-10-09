@@ -12,7 +12,7 @@ class UpdateSafetyTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    function can_update_a_article_without_image()
+    function can_update_an_article_without_image()
     {
         $this->withoutExceptionHandling();
 
@@ -44,7 +44,7 @@ class UpdateSafetyTest extends TestCase
             ]);
     }
     /** @test */
-    function can_update_a_article_with_image()
+    function can_update_an_article_with_image()
     {
         $this->withoutExceptionHandling();
 
@@ -77,7 +77,7 @@ class UpdateSafetyTest extends TestCase
     }
 
     /** @test */
-    function can_update_a_image_exists_of_article()
+    function can_update_the_existing_image_of_the_article()
     {
         $this->withoutExceptionHandling();
 
@@ -110,7 +110,7 @@ class UpdateSafetyTest extends TestCase
     }
 
     /** @test */
-    function can_added_a_image_of_article()
+    function can_add_an_image_for_the_article()
     {
         $this->withoutExceptionHandling();
 
