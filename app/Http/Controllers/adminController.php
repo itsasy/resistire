@@ -460,12 +460,12 @@ class adminController extends Controller
             return redirect()->route('MapAsociates',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
         }
     }
-    
+
     public function MapaAsociates($district, $iddistrict, $provincia)
     {
         return view('mapAsociates', compact('district', 'iddistrict', 'provincia'));
     }
-    
+
     public function regCompanies()
     {
         return view('regCompanies');
@@ -481,7 +481,7 @@ class adminController extends Controller
 
             if ($request->file('cmp_img')->isValid()) {
                 $imagen = $request->file('cmp_img');
-                $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a') .".". $request->file('cmp_img')->extension()));
+                $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a') . "." . $request->file('cmp_img')->extension()));
                 Storage::disk('companies')->put($filename, File::get($imagen));
                 $tb_companies->cmp_img = $filename;
             }
@@ -497,7 +497,7 @@ class adminController extends Controller
             $tb_companies->save();
             return redirect()->route('MapAsociates',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
 
-           // return redirect()->route('noticias', ['seccion' => 'companies']);
+            // return redirect()->route('noticias', ['seccion' => 'companies']);
         } catch (\Exception $e) {
             return redirect()->back();
         }
