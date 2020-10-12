@@ -22,13 +22,9 @@ class tb_users extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    
+
     public function district()
     {
-     
-        return $this->hasOne(tb_district::class,'id','usr_id_dst');
-
-    
+        return $this->hasOne(tb_district::class, 'id', 'usr_id_dst');
     }
-   
 }

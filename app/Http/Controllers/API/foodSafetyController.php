@@ -8,6 +8,7 @@ use App\Http\Resources\foodSafetyCollection;
 use App\Http\Resources\foodSafetyResource;
 use App\Models\tb_foodsafety;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class foodSafetyController extends Controller
 {
@@ -20,63 +21,70 @@ class foodSafetyController extends Controller
 
     public function store(Request $request)
     {
-        $article = tb_foodsafety::create($request->all());
+        $data = $request->all();
 
         if ($request->fds_img) {
-            $this->save_image($request->fds_img, $article);
+            $data['fds_img'] = $this->save_image($request->fds_img, $data);
         }
+
+        $data['slug'] = $this->slug($request->fds_title);
+
+        /*  $image = $request->fds_img ? $request->fds_img->storeAs('foodSafety', $request->fds_img->getClientOriginalName()) : null;
+
+        $data['fds_img'] = $image;
+        */
+        $article = tb_foodsafety::create($data);
 
         return foodSafetyResource::make($article);
     }
 
-    public function show($id)
+    public function show(tb_foodsafety $foodsafety)
     {
-        $article = tb_foodsafety::findOrFail($id);
-        return foodSafetyResource::make($article);
+        return foodSafetyResource::make($foodsafety);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, tb_foodsafety $foodsafety)
     {
-        $article = tb_foodsafety::findOrFail($id);
+        $data = $request->all();
 
-        if ($article->fds_img) {
-            Storage::delete('foodSafety/' . $article->fds_img);
-        }
-
-        $article->update($request->all());
+        $data['slug'] = $this->slug($request->fds_title);
 
         if ($request->fds_img) {
-            $this->save_image($request->fds_img, $article);
+            Storage::delete('foodSafety/' . $foodsafety->fds_img);
+            $data['fds_img'] = $this->save_image($request->fds_img, $data);
         }
 
-        $article->save();
+        $foodsafety->update($data);
 
-        return foodSafetyResource::make($article);
-
+        return foodSafetyResource::make($foodsafety);
     }
 
 
-    public function destroy($id)
+    public function destroy(tb_foodsafety $foodsafety)
     {
-        $article = tb_foodsafety::findOrFail($id);
-
-        if ($article->fds_img) {
-            Storage::delete('public/foodSafety', $article->fds_img);
+        if ($foodsafety->fds_img) {
+            Storage::delete('public/foodSafety', $foodsafety->fds_img);
         }
 
-        $status = $article->delete();
+        $status = $foodsafety->delete();
 
         return $status ? 'Eliminado correctamente' : null;
     }
 
-    public function save_image($image, $model) : void
+    public function slug($title)
     {
-        $name = $image->getClientOriginalName();
+        $slug = Str::slug($title);
+        return $slug;
+    }
 
+    public function save_image($image)
+    {
+        /* $name = $image->getClientOriginalName();
         $image->storeAs('foodSafety', $name);
+        $data['fds_img'] = $name; */
 
-        $model->update(['fds_img' => $name]);
-
+        $name = $image->getClientOriginalName();
+        return $image->storeAs('foodSafety', $name);
     }
 }

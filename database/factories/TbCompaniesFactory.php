@@ -3,9 +3,11 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Faker\Generator as Faker;
-use {{ namespacedModel }};
+use App\Models\tb_companies;
+use App\Models\tb_district;
+use App\Models\tb_users;
 
-$factory->define(TbCompanies::class, function (Faker $faker) {
+$factory->define(tb_companies::class, function (Faker $faker) {
     return [
         'cmp_name' => $faker->word,
         'cmp_img' => $faker->word,
@@ -16,8 +18,8 @@ $factory->define(TbCompanies::class, function (Faker $faker) {
         'cmp_instagram' => $faker->word,
         'fds_facebook' => $faker->word,
         'fds_state' => $faker->boolean,
-        'cmp_id_usr' => factory(\App\Models\TbUsers::class),
-        'cmp_id_dst' => factory(\App\Models\Cmp::class),
-        'cmp_id_cmpt' => factory(\App\Models\Cmp::class),
+        'cmp_id_usr' => factory(tb_users::class),
+        'cmp_id_dst' => factory(tb_district::class),
+        'cmp_id_cmpt' => factory(tb_companies::class),
     ];
 });

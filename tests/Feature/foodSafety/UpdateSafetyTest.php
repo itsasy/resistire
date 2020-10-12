@@ -20,13 +20,12 @@ class UpdateSafetyTest extends TestCase
 
         $update = ['fds_title' => 'Titulo'];
 
-        $response = $this->put(route('foodsafety.update', $article->id), $update);
+        $response = $this->putJson(route('foodsafety.update', $article->id), $update);
 
         $response->assertStatus(200)
             ->assertJson([
                 'data' => [
                     'fds_title' => $update['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],
@@ -37,6 +36,7 @@ class UpdateSafetyTest extends TestCase
                     'fds_enable' => $article['fds_enable'],
                     'fds_id_usr' => $article['fds_id_usr'],
                     'fds_id_fdst' => $article['fds_id_fdst'],
+                    'fds_id_dst' => $article['fds_id_dst'],
                     'links' => [
                         'image' => null
                     ],
@@ -52,13 +52,12 @@ class UpdateSafetyTest extends TestCase
 
         $update = ['fds_title' => 'Título'];
 
-        $response = $this->put(route('foodsafety.update' , $article->id), $update);
+        $response = $this->putJson(route('foodsafety.update' , $article->id), $update);
 
         $response->assertStatus(200)
             ->assertJson([
                 'data' => [
                     'fds_title' => $update['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],
@@ -69,8 +68,9 @@ class UpdateSafetyTest extends TestCase
                     'fds_enable' => $article['fds_enable'],
                     'fds_id_usr' => $article['fds_id_usr'],
                     'fds_id_fdst' => $article['fds_id_fdst'],
+                    'fds_id_dst' => $article['fds_id_dst'],
                     'links' => [
-                        'image' => url('storage/foodSafety/' . $article['fds_img'])
+                        'image' => url('storage/' . $article['fds_img'])
                     ],
                 ]
             ]);
@@ -85,13 +85,12 @@ class UpdateSafetyTest extends TestCase
 
         $update = ['fds_img' => UploadedFile::fake()->image('image.png', 100, 100)];
 
-        $response = $this->put(route('foodsafety.update' , $article->id), $update);
+        $response = $this->putJson(route('foodsafety.update' , $article->id), $update);
 
         $response->assertStatus(200)
             ->assertJson([
                 'data' => [
                     'fds_title' => $article['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],
@@ -102,6 +101,7 @@ class UpdateSafetyTest extends TestCase
                     'fds_enable' => $article['fds_enable'],
                     'fds_id_usr' => $article['fds_id_usr'],
                     'fds_id_fdst' => $article['fds_id_fdst'],
+                    'fds_id_dst' => $article['fds_id_dst'],
                     'links' => [
                         'image' => url('storage/foodSafety/' . $update['fds_img']->getClientOriginalName())
                     ],
@@ -118,13 +118,12 @@ class UpdateSafetyTest extends TestCase
 
         $update = ['fds_img' => UploadedFile::fake()->image('image.png', 100, 100)];
 
-        $response = $this->put(route('foodsafety.update' , $article->id), $update);
+        $response = $this->putJson(route('foodsafety.update' , $article->id), $update);
 
         $response->assertStatus(200)
             ->assertJson([
                 'data' => [
                     'fds_title' => $article['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],
@@ -135,6 +134,7 @@ class UpdateSafetyTest extends TestCase
                     'fds_enable' => $article['fds_enable'],
                     'fds_id_usr' => $article['fds_id_usr'],
                     'fds_id_fdst' => $article['fds_id_fdst'],
+                    'fds_id_dst' => $article['fds_id_dst'],
                     'links' => [
                         'image' => url('storage/foodSafety/' . $update['fds_img']->getClientOriginalName())
                     ],

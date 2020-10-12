@@ -18,13 +18,12 @@ class CreateSafetyTest extends TestCase
 
         $article = factory(tb_foodsafety::class)->raw(['fds_img' => null]);
 
-        $response = $this->post(route('foodsafety.store', $article));
+        $response = $this->postJson(route('foodsafety.store', $article));
 
         $response->assertStatus(201)
             ->assertJson([
                 'data' => [
                     'fds_title' => $article['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],
@@ -35,6 +34,7 @@ class CreateSafetyTest extends TestCase
                     'fds_enable' => $article['fds_enable'],
                     'fds_id_usr' => $article['fds_id_usr'],
                     'fds_id_fdst' => $article['fds_id_fdst'],
+                    'fds_id_dst' => $article['fds_id_dst'],
                     'links' => [
                         'image' => null
                     ],
@@ -50,13 +50,12 @@ class CreateSafetyTest extends TestCase
             'fds_img' => UploadedFile::fake()->image('image.png', 100, 100)
         ]);
 
-        $response = $this->post(route('foodsafety.store'), $article);
+        $response = $this->postJson(route('foodsafety.store'), $article);
 
         $response->assertStatus(201)
             ->assertJson([
                 'data' => [
                     'fds_title' => $article['fds_title'],
-                    'slug' => $article['slug'],
                     'fds_desc' => $article['fds_desc'],
                     'fds_source' => $article['fds_source'],
                     'fds_url' => $article['fds_url'],

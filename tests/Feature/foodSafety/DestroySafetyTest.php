@@ -13,13 +13,11 @@ class DestroySafetyTest extends TestCase
     /** @test */
     function can_destroy_a_article()
     {
-        $this->withoutExceptionHandling();
         $article = factory(tb_foodsafety::class)->create();
 
-        $response = $this->delete(route('foodsafety.destroy', $article->getRouteKey()));
+        $response = $this->deleteJson(route('foodsafety.destroy', $article->getRouteKey()));
 
         $response->assertStatus(200);
-
 
         $this->assertDatabaseMissing('tb_foodsafety', ['id' => $article->id]);
     }

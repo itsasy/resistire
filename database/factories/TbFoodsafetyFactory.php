@@ -2,8 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\tb_district;
 use App\Models\tb_foodsafety;
-use App\Model\tb_foodsafety_types;
+use App\Models\tb_foodsafety_types;
 use App\Models\tb_users;
 use Faker\Generator as Faker;
 
@@ -22,5 +23,7 @@ $factory->define(tb_foodsafety::class, function (Faker $faker) {
         'fds_enable' => $faker->boolean,
         'fds_id_usr' => factory(tb_users::class),
         'fds_id_fdst' => factory(tb_foodsafety_types::class),
+        'fds_id_dst' => factory(tb_district::class),
+
     ];
 });

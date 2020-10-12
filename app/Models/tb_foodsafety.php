@@ -23,11 +23,16 @@ class tb_foodsafety extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\tb_users::class);
+        return $this->hasOne(\App\Models\tb_users::class);
     }
 
     public function type()
     {
-        return $this->belongsTo(\App\Models\tb_foodsafety_types::class);
+        return $this->hasOne(\App\Models\tb_foodsafety_types::class);
+    }
+
+    public function district()
+    {
+        return $this->hasOne(\App\Models\tb_district::class);
     }
 }

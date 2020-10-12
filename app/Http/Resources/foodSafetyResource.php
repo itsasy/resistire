@@ -27,8 +27,9 @@ class foodSafetyResource extends JsonResource
             'fds_enable' => $this->resource->fds_enable,
             'fds_id_usr' => $this->resource->fds_id_usr,
             'fds_id_fdst' => $this->resource->fds_id_fdst,
+            'fds_id_dst' => $this->resource->fds_id_dst,
             'links' => [
-                'image' => $this->resource->fds_img ? url('storage/foodSafety/' . $this->resource->fds_img) : null
+                'image' => $this->resource->fds_img ? url('storage/' . $this->resource->fds_img) : null,
             ]
         ];
     }

@@ -16,7 +16,7 @@ class ListSafetyTest extends TestCase
         $this->withoutExceptionHandling();
         $article = factory(tb_foodsafety::class)->create();
 
-        $response = $this->get(route('foodsafety.show', $article->getRouteKey()));
+        $response = $this->getJson(route('foodsafety.show', $article->getRouteKey()));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -33,6 +33,7 @@ class ListSafetyTest extends TestCase
                     'fds_enable' => $article->fds_enable,
                     'fds_id_usr' => $article->fds_id_usr,
                     'fds_id_fdst' => $article->fds_id_fdst,
+                    'fds_id_dst' => $article->fds_id_dst,
                     'links' => [
                         'image' => null
                     ],
@@ -45,7 +46,7 @@ class ListSafetyTest extends TestCase
         $this->withoutExceptionHandling();
         $article = factory(tb_foodsafety::class)->times(2)->create();
 
-        $response = $this->get(route('foodsafety.index'));
+        $response = $this->getJson(route('foodsafety.index'));
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -63,6 +64,7 @@ class ListSafetyTest extends TestCase
                         'fds_enable' => $article[0]->fds_enable,
                         'fds_id_usr' => $article[0]->fds_id_usr,
                         'fds_id_fdst' => $article[0]->fds_id_fdst,
+                        'fds_id_dst' => $article[0]->fds_id_dst,
                         'links' => [
                             'image' => null
                         ],
@@ -80,6 +82,7 @@ class ListSafetyTest extends TestCase
                         'fds_enable' => $article[1]->fds_enable,
                         'fds_id_usr' => $article[1]->fds_id_usr,
                         'fds_id_fdst' => $article[1]->fds_id_fdst,
+                        'fds_id_dst' => $article[1]->fds_id_dst,
                         'links' => [
                             'image' => null
                         ],
