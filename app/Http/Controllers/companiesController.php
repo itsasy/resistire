@@ -38,7 +38,7 @@ class companiesController extends Controller
 
     public function companies_by_district_and_type($district, $type)
     {
-        return tb_companies::where('cmp_id_dst', $district)->where('cmp_id_cmpt', $type)->orderBy('cmp_id_cmpt', 'DESC')->get();
+        return tb_companies::with('info_district')->with('info_company_type')->where('cmp_id_dst', $district)->where('cmp_id_cmpt', $type)->orderBy('cmp_id_cmpt', 'DESC')->get();
     }
 
     public function imageCompanie($fileName)
