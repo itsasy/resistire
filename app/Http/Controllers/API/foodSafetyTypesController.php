@@ -4,56 +4,42 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\foodSafetyTypeCollection;
+use App\Http\Resources\foodSafetyTypeResource;
 use App\Models\tb_foodsafety_types;
 
 class foodSafetyTypesController extends Controller
 {
     public function index()
     {
-        return tb_foodsafety_types::all();
+        $types = tb_foodsafety_types::all();
+
+        return foodSafetyTypeCollection::make($types);
     }
 
     public function store(Request $request)
     {
-        tb_foodsafety_types::create($request->all());
+        $data = tb_foodsafety_types::create($request->all());
 
-        return response([
-            'type' => 'success',
-            'message' => 'Se ha registrado correctamente',
-        ], 200);
+        return foodSafetyTypeResource::make($data);
     }
 
-    public function show($id)
+    public function show(tb_foodsafety_types $types_foodsafety)
     {
-        $data = tb_foodsafety_types::findOrFail($id);
+        return foodSafetyTypeResource::make($types_foodsafety);
 
-        return response([
-            'id' => $data->id,
-            'fdst_desc' => $data->fdst_desc,
-        ], 200);
     }
 
-
-    public function update(Request $request, $id)
+    public function update(Request $request, tb_foodsafety_types $types_foodsafety)
     {
-        $table = tb_foodsafety_types::findOrFail($id);
+        $types_foodsafety->update($request->all());
 
-        $table->update($request->all());
-
-        $table->save();
-
-        return response([
-            'type' => 'success',
-            'message' => 'Se ha actualizado correctamente',
-        ], 200);
+        return foodSafetyTypeResource::make($types_foodsafety);
     }
 
-
-    public function destroy($id)
+    public function destroy(tb_foodsafety_types $types_foodsafety)
     {
-        $data = tb_foodsafety_types::findOrFail($id);
-
-        $status = $data->delete();
+        $status = $types_foodsafety->delete();
 
         return response([
             'message' => $status ? 'Eliminado correctamente' : null

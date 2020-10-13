@@ -14,7 +14,7 @@ class foodSafetyController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $data = tb_foodsafety_types::paginate(8);
@@ -45,7 +45,6 @@ class foodSafetyController extends Controller
 
     public function show($id)
     {
-
         $data = tb_foodsafety::where('fds_id_fdst', $id)->get();
 
         $name = tb_foodsafety_types::where('id', $id)->get();
