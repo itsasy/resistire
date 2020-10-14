@@ -14,6 +14,7 @@ use App\Models\tb_users;
 use App\Models\tb_alerts;
 use App\Models\tb_infoadi;
 use App\Models\tb_companies;
+use App\models\tb_company_types;
 use Storage;
 use File;
 use Carbon\Carbon;
@@ -96,23 +97,23 @@ class adminController extends Controller
             $noticiasAdmi = tb_news::whereBetween('nws_id_nwst', [2, 5])->orderBy('nws_date', 'desc')->get();
             $puntos = tb_points::where('atp_id_dst', [session('autenticacion')->usr_id_dst])->get();
             $infoadi = tb_infoadi::get();
-            $companies1 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '1')->get();
+            /*   $companies1 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '1')->get();
             $companies2 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '2')->get();
             $companies3 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '3')->get();
             $companies4 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '4')->get();
-            $companies5 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '5')->get();
+            $companies5 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '5')->get(); */
         } else {
             $noticias = tb_news::orderBy('nws_date', 'desc')->get();
             $noticiasAdmi = tb_news::whereBetween('nws_id_nwst', [2, 5])->orderBy('nws_date', 'desc')->get();
             $puntos = tb_points::get();
-            $companies1 = tb_companies::where('cmp_id_cmpt', '1')->get();
+            /*   $companies1 = tb_companies::where('cmp_id_cmpt', '1')->get();
             $companies2 = tb_companies::where('cmp_id_cmpt', '2')->get();
             $companies3 = tb_companies::where('cmp_id_cmpt', '3')->get();
             $companies4 = tb_companies::where('cmp_id_cmpt', '4')->get();
-            $companies5 = tb_companies::where('cmp_id_cmpt', '5')->get();
+            $companies5 = tb_companies::where('cmp_id_cmpt', '5')->get(); */
         }
 
-        return view('noticias', compact('noticias', 'puntos', 'noticiasAdmi', 'seccion', 'infoadi', 'companies1', 'companies2', 'companies3', 'companies4', 'companies5'));
+        return view('noticias', compact('noticias', 'puntos', 'noticiasAdmi', 'seccion', 'infoadi'));
     }
 
     public function regNews()
@@ -495,7 +496,7 @@ class adminController extends Controller
             $tb_companies->cmp_state = 1;
 
             $tb_companies->save();
-            return redirect()->route('MapAsociates',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
+            return redirect()->route('show_asociate', ['id' => $request->cmp_id_cmpt]);
 
             // return redirect()->route('noticias', ['seccion' => 'companies']);
         } catch (\Exception $e) {
@@ -536,7 +537,7 @@ class adminController extends Controller
 
             $tb_companies->save();
 
-            return redirect()->route('noticias', ['seccion' => 'companies']);
+            return redirect()->route('show_asociate', ['id' => $request->cmp_id_cmpt]);
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -551,7 +552,7 @@ class adminController extends Controller
 
             Storage::disk('companies')->delete($tb_companies->cmp_img);
             $tb_companies->delete();
-            return redirect()->route('noticias', ['seccion' => 'companies']);
+            return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back();
         }

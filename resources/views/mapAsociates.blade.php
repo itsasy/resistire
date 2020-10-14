@@ -10,18 +10,21 @@
     <h2 class="title text-center">Mapa de empresas responsables</h2>
 </div>
 <div class="container-fluid barra">
-    
-     <div class="row">
 
-        <p class="text-secondary"    id="district"   hidden>{{$district}}</p>
-        <p class="text-secondary"    id="iddistrict" hidden>{{$iddistrict}}</p>
-        <p class="text-sdsfecondary" id="provincia"  hidden>{{$provincia}}</p>
+    <div class="row">
+
+        <p class="text-secondary" id="district" hidden>{{$district}}</p>
+        <p class="text-secondary" id="iddistrict" hidden>{{$iddistrict}}</p>
+        <p class="text-sdsfecondary" id="provincia" hidden>{{$provincia}}</p>
 
     </div>
-    
+
     <div class="position-fixed mb-1 z_i_1">
         <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('regCompanies')}}" role="button"
             title="Nuevo"><i class="fas fa-plus"></i></a>
+
+        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('allAsociates')}}" role="button"
+            title="Ver todos"><i class="fas fa-eye"></i></a>
     </div>
     <div class="row">
         <div id="map" class="map"></div>

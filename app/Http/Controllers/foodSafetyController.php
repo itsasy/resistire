@@ -14,7 +14,7 @@ class foodSafetyController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $data = tb_foodsafety_types::where('fdst_id_dst', auth()->user()->usr_id_dst)->paginate(8);
@@ -32,7 +32,7 @@ class foodSafetyController extends Controller
     public function store(Request $request)
     {
         $user = ['fds_id_usr' => auth()->user()->id, 'fds_id_dst' => auth()->user()->usr_id_dst];
-        
+
         $article = tb_foodsafety::create($request->all() + $user);
 
         if ($request->fds_img) {
@@ -45,7 +45,6 @@ class foodSafetyController extends Controller
 
     public function show($id)
     {
-
         $data = tb_foodsafety::where('fds_id_fdst', $id)->get();
 
         $name = tb_foodsafety_types::where('id', $id)->get();

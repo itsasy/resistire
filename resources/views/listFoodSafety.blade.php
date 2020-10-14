@@ -10,14 +10,14 @@
 </div>
 @endsection
 @section('content')
-<div class="col-12 d-flex justify-content-center mt-2">
+<div class="col-12 mt-2">
     <div class="position-fixed mb-1 z_i_1 justify-content-left col-12">
         <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('alimentos.create')}}" role="button"
             title="Nuevo"><i class="fas fa-plus"></i></a>
-        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('mapAssociate')}}" role="button" title="Atrás"><i
-                class="fas fa-arrow-left"></i></a>
+        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('mapAssociate')}}" role="button"
+            title="Atrás"><i class="fas fa-arrow-left"></i></a>
     </div>
-    <div class="container">
+    <div class="container d-flex justify-content-center ">
         <div class="row">
             @forelse($data as $element)
             <div class="col-lg-4">

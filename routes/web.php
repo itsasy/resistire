@@ -14,7 +14,7 @@ Route::group(['prefix' => 'blog'], function () {
     Route::get('/editar/{id}/{tipo}', 'adminController@updateNews')->name('updateNews');
     Route::post('/guarda', 'adminController@saveUpdateNews')->name('saveUpdateNews');
 });
-Route::group(['prefix' => 'adicional'], function(){
+Route::group(['prefix' => 'adicional'], function () {
     Route::get('/nuevo', 'adminController@regInfo')->name('regInfo');
     Route::post('/guardar', 'adminController@saveInfo')->name('saveInfo');
     Route::get('/eliminar/{id}', 'adminController@deleteInfo')->name('deleteInfo');
@@ -68,13 +68,15 @@ Route::group(['prefix' => 'asociados'], function () {
     Route::get('/editar/{id}', 'adminController@updateCompanies')->name('editCompanies');
     Route::post('/guarda', 'adminController@saveUpdateCompanies')->name('saveUpdateCompanies');
     Route::get('ban/{id}', 'adminController@banCompanies')->name('banCompanies');
+    Route::get('/categoria', 'CompaniesTypeController@index')->name('allAsociates');
+    Route::get('/categoria/{id}', 'CompaniesTypeController@show')->name('show_asociate');
+    Route::post('/categoria', 'CompaniesTypeController@store')->name('save_company_category');
 });
 
 Route::resource('alimentos', 'foodSafetyController');
 Route::resource('tipo_alimentos', 'foodSafetyTypesController');
 Route::get('/toChart', 'adminController@toChart');
 
-/* Route::view('alimento', 'regFoodSafety');
-Route::view('type', 'typesFoodSafety');
+/*Route::view('type', 'typesFoodSafety');
 Route::view('list', 'listFoodSafety');
  */
