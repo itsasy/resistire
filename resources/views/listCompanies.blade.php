@@ -20,13 +20,13 @@
     <div class="container justify-content-center">
         <div class="row">
             @forelse($data as $element)
-            <div class="col-md-4 col-sm-5 col-lg-3">
+            <div class="col-md-4 col-sm-5 col-lg-3 mb-1">
                 <div class="card rounded_1">
-                    <div class="inner-img rounded_1">
+                    <div class="inner-img rounded_t_1">
                         <a name="" id="" class="" href="" target="_blank" role="button">
-                            <img src="{{url('/'). '/api/imageCompany' . $element->cmp_img}}"
+                            <img src="{{url('/'). '/api/imageCompany/' . $element->cmp_img}}"
                                 onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}"
-                                class="img-fluid rounded_1 mb-3 mh_6 mxh_6">
+                                class="card-img-top rounded_t_1 mh_6 mxh_6">
                         </a>
                     </div>
                     <div class="card-body">

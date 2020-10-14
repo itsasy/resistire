@@ -33,7 +33,7 @@
                 <i class="fas fa-th-large fa-2x"></i>Seguridad alimentaria
             </a>
 
-            <a href="{{route('noticias', ['seccion'=> "nacionales"] )}}"
+            <a href="{{route('noticias', ['seccion'=> "locales"] )}}"
                 class="btn btn_outl_w py-4 mx-5 d-flex justify-content-between align-items-center mb-3 rounded_1">
                 <i class="fas fa-th-large fa-2x"></i>Blog
             </a>
