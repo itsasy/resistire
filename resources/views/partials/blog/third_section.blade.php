@@ -1,4 +1,4 @@
-<div aria-labelledby="adicionalTab" class="tab-pane fade  {{Request::segment(2) == 'locales' ? 'show active' : ' '}}"
+<div aria-labelledby="adicionalTab" class="tab-pane fade  {{Request::segment(2) == 'municipalidad' ? 'show active' : ' '}}"
     id="Adicional" role="tabpanel">
     @if(session('autenticacion')->usr_type_id == 1)
     <div class="position-fixed mb-1 z_i_1">

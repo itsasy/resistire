@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('layouts.toggle_menu')
+@include('layouts.btn_return_map')
 
 @section('title', 'Prueba')
 

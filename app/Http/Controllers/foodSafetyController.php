@@ -39,7 +39,7 @@ class foodSafetyController extends Controller
             $this->save_image($request->fds_img, $article);
         }
 
-        return redirect()->route('alimentos.index');
+        return redirect()->route('alimentos.show', $request->fds_id_fdst);
     }
 
 
@@ -78,7 +78,7 @@ class foodSafetyController extends Controller
 
         $article->save();
 
-        return redirect()->route('alimentos.index');
+        return redirect()->route('alimentos.show', $request->fds_id_fdst);
     }
 
     public function destroy($id)

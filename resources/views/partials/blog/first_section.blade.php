@@ -1,4 +1,4 @@
-<div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'nacionales' ? 'show active' : ' '}}"
+<div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'locales' ? 'show active' : ' '}}"
     id="LocalesDistritales" role="tabpanel">
     @if(session('autenticacion')->usr_type_id == 2)
     <div class="position-fixed mb-1 z_i_1">

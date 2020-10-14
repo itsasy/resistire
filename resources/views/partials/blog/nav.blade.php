@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
         <ul class="nav navbar-nav d-flex align-items-center" id="justifiedTab" role="tablist">
-            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'nacionales' ? 'active' : ' '}}">
+            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'locales' ? 'active' : ' '}}">
                 <a aria-controls="LocalesDistritales" aria-selected="true" class="nav-link font-weight-bold"
                     data-toggle="tab" href="#LocalesDistritales" id="localesTab" role="tab">Locales Distritales</a>
             </li>
@@ -17,7 +17,7 @@
                     href="#Puntos" id="puntosTab" role="tab">Instituciones públicas</a>
             </li>
             @if(session('autenticacion')->usr_id_dst != 1090)
-            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'locales' ? 'active' : ' '}}">
+            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'municipalidad' ? 'active' : ' '}}">
                 <a aria-controls="Adicional" aria-selected="true" class="nav-link font-weight-bold" data-toggle="tab"
                     href="#Adicional" id="adicionalTab" role="tab">Tu municipalidad</a>
             </li>

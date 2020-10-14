@@ -12,7 +12,7 @@
         <i class="fas fa-plus"></i>
     </button>
 
-    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('Index')}}" role="button" title="Nuevo"><i
+    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('mapAssociate')}}" role="button" title="Nuevo"><i
             class="fas fa-arrow-left"></i></a>
 </div>
 

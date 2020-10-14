@@ -14,7 +14,7 @@
     <div class="position-fixed mb-1 z_i_1 justify-content-left col-12">
         <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('alimentos.create')}}" role="button"
             title="Nuevo"><i class="fas fa-plus"></i></a>
-        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="#" role="button" title="Atrás"><i
+        <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('mapAssociate')}}" role="button" title="Atrás"><i
                 class="fas fa-arrow-left"></i></a>
     </div>
     <div class="container">
