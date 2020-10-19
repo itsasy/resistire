@@ -1,4 +1,5 @@
 @section('toggle_menu')
+
 <div class="toggle_menu container-fluid">
     <a href="#" id="toggle_menu" class="btn btn_transp my-2 z_i_2">
         <i class="fas fa-sliders-h"></i>
@@ -32,8 +33,18 @@
                 class="btn btn_outl_w py-4 mx-5 d-flex justify-content-between align-items-center mb-3 rounded_1">
                 <i class="fas fa-th-large fa-2x"></i>Seguridad alimentaria
             </a>
-
-            <a href="{{route('noticias', ['seccion'=> "locales"] )}}"
+            
+            @if(auth()->user()->usr_type_id != 1)
+            <a href="{{route('local_news')}}"
+                class="btn btn_outl_w py-4 mx-5 d-flex justify-content-between align-items-center mb-3 rounded_1">
+                <i class="fas fa-th-large fa-2x"></i>Noticias Locales
+            </a>
+            @endif
+            <a @if(auth()->user()->usr_type_id == 1)
+                href="{{route('noticias', ['seccion'=> "administrador"])}}"
+                @else
+                href="{{route('noticias', ['seccion' => 'puntos'])}}"
+                @endif
                 class="btn btn_outl_w py-4 mx-5 d-flex justify-content-between align-items-center mb-3 rounded_1">
                 <i class="fas fa-th-large fa-2x"></i>Blog
             </a>

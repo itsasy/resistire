@@ -8,10 +8,12 @@
 
     <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
         <ul class="nav navbar-nav d-flex align-items-center" id="justifiedTab" role="tablist">
-            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'locales' ? 'active' : ' '}}">
-                <a aria-controls="LocalesDistritales" aria-selected="true" class="nav-link font-weight-bold"
-                    data-toggle="tab" href="#LocalesDistritales" id="localesTab" role="tab">Locales Distritales</a>
+            @if(auth()->user()->usr_type_id == 1)
+            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'administrador' ? 'active' : ' '}}">
+                <a aria-controls="administrador" aria-selected="true" class="nav-link font-weight-bold"
+                    data-toggle="tab" href="#administrador" id="localesTab" role="tab">Noticias</a>
             </li>
+            @endif
             <li class="nav-item mx-lg-4 {{Request::segment(2) == 'puntos' ? 'active' : ' '}}">
                 <a aria-controls="Puntos" aria-selected="true" class="nav-link font-weight-bold" data-toggle="tab"
                     href="#Puntos" id="puntosTab" role="tab">Instituciones públicas</a>
@@ -22,10 +24,6 @@
                     href="#Adicional" id="adicionalTab" role="tab">Tu municipalidad</a>
             </li>
             @endif
-            {{-- <li class="nav-item mx-lg-4">
-                <a aria-controls="Companies" aria-selected="true" class="nav-link font-weight-bold" data-toggle="tab"
-                    href="#Companies" id="companiesTab" role="tab">Asociados</a>
-            </li> --}}
             <li class="nav-item">
                 <a class="nav-link font-weight-bold"
                     href="  {{route('Mapa', [ session('distrito'), session('id_distrito'), session('nom_provincia')])}}"

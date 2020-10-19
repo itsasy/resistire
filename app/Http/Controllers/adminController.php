@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Response;
 
 use App\Models\tb_news;
 use App\Models\tb_points;
@@ -14,7 +11,7 @@ use App\Models\tb_users;
 use App\Models\tb_alerts;
 use App\Models\tb_infoadi;
 use App\Models\tb_companies;
-use App\models\tb_company_types;
+use App\Models\tb_district;
 use Storage;
 use File;
 use Carbon\Carbon;
@@ -34,57 +31,6 @@ class adminController extends Controller
         return view('login');
     }
 
-    /*public function login(Request $request)
-    {
-
-        $array = [];
-        $credentials = $request->only('username', 'password');
-
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return back()->with('status', 'No tiene acceso');
-            }
-            if (!$user = JWTAuth::user()) {
-                return back()->with('status', 'No tiene acceso');
-            }
-            if (JWTAuth::user()->usr_type_id == 3 ) {
-                return back()->with('status', 'No tiene acceso');
-            }
-
-            session(['autenticacion' => $user]);
-
-            $DISTRITO = JWTAuth::user()->district->dst_name ;
-            $IDDISTRITO = JWTAuth::user()->district->id ;
-
-            $PROVINCIA = JWTAuth::user()->district->province->prv_name ;
-
-          //  $PROVINCIA = "LIMA";
-            session(['distrito' => $DISTRITO]);
-            session(['id_distrito' => $IDDISTRITO]);
-            session(['nom_provincia' => $PROVINCIA]);
-
-               return redirect()->route('Mapa', ['district' => $DISTRITO, 'iddistrict' => $IDDISTRITO , 'provincia' => $PROVINCIA]);
-
-           // return redirect()->route('noticias');
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'no se pudo crear el token'], 500);
-        }
-    }
-
-        public function logout(Request $request)
-    {
-        try {
-            $request->session()->forget('autenticacion');
-            $request->session()->invalidate();
-
-            return redirect()->route('Index');
-
-        } catch (JWTException $e) {
-           return redirect()->route('Index');
-        }
-    }
-    */
-
     public function Mapa($district, $iddistrict, $provincia)
     {
         return view('map', compact('district', 'iddistrict', 'provincia'));
@@ -93,27 +39,15 @@ class adminController extends Controller
     public function news($seccion)
     {
         if (session('autenticacion')->usr_type_id == 2) {
-            $noticias = tb_news::where('nws_id_dst', [session('autenticacion')->usr_id_dst])->orderBy('nws_date', 'desc')->get();
-            $noticiasAdmi = tb_news::whereBetween('nws_id_nwst', [2, 5])->orderBy('nws_date', 'desc')->get();
             $puntos = tb_points::where('atp_id_dst', [session('autenticacion')->usr_id_dst])->get();
-            $infoadi = tb_infoadi::get();
-            /*   $companies1 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '1')->get();
-            $companies2 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '2')->get();
-            $companies3 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '3')->get();
-            $companies4 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '4')->get();
-            $companies5 = tb_companies::where('cmp_id_dst', [session('autenticacion')->usr_id_dst])->where('cmp_id_cmpt', '5')->get(); */
-        } else {
-            $noticias = tb_news::orderBy('nws_date', 'desc')->get();
-            $noticiasAdmi = tb_news::whereBetween('nws_id_nwst', [2, 5])->orderBy('nws_date', 'desc')->get();
-            $puntos = tb_points::get();
-            /*   $companies1 = tb_companies::where('cmp_id_cmpt', '1')->get();
-            $companies2 = tb_companies::where('cmp_id_cmpt', '2')->get();
-            $companies3 = tb_companies::where('cmp_id_cmpt', '3')->get();
-            $companies4 = tb_companies::where('cmp_id_cmpt', '4')->get();
-            $companies5 = tb_companies::where('cmp_id_cmpt', '5')->get(); */
+            $infoadi = tb_infoadi::where('adi_id_adit', [session('autenticacion')->usr_id_dst])->get();
+            return view('blog', compact('puntos', 'infoadi'));
         }
 
-        return view('noticias', compact('noticias', 'puntos', 'noticiasAdmi', 'seccion', 'infoadi'));
+        $noticias = tb_news::orderBy('nws_date', 'desc')->get();
+        $puntos = tb_points::get();
+        $infoadi = tb_infoadi::get();
+        return view('blog', compact('noticias', 'puntos', 'seccion', 'infoadi'));
     }
 
     public function regNews()
@@ -143,6 +77,10 @@ class adminController extends Controller
             }
 
             $nws->save();
+
+            if ($request->tipo == 'locales') {
+                return redirect()->route('local_news');
+            }
 
             return redirect()->route('noticias', ['seccion' => $request->tipo]);
         } catch (\Exception $e) {
@@ -191,6 +129,10 @@ class adminController extends Controller
                 $nws->nws_image = $filename;
             }
             $nws->save();
+
+            if ($request->tipo == 'locales') {
+                return redirect()->route('local_news');
+            }
 
             return redirect()->route('noticias', ['seccion' => $request->tipo]);
         } catch (\Exception $e) {
@@ -557,6 +499,16 @@ class adminController extends Controller
             return redirect()->back();
         }
     }
+
+    public function local_news(){
+        $name = tb_district::where('id', auth()->user()->usr_id_dst)->pluck('dst_name')[0];
+
+        $noticias = tb_news::where('nws_id_dst', auth()->user()->usr_id_dst)->where('nws_id_nwst', 1)->orderBy('nws_date', 'desc')->get();
+
+
+        return view('noticias', compact('name', 'noticias'));
+    }
+
     public function banCompanies($id)
     {
         $companie = tb_companies::find($id);

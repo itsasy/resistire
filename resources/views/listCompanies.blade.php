@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section ('title', 'Noticias')
+@section ('title', 'Lista de asociados')
 
 @section('header')
 <div class="bg_grad_h add-ff-nunito text-center" style="padding:0.7rem;">

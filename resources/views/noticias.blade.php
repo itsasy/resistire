@@ -3,25 +3,15 @@
 @section ('title', 'Noticias')
 
 @section('header')
-<div class="">
-    @include('partials.blog.nav')
+<div class="bg_grad_h add-ff-nunito text-center" style="padding:0.7rem;">
+    <div class="justify-content-center">
+        <h3 class=" font-weight-bold my-4 text-center text-white text-uppercase">Noticias de {{$name}}</h3>
+    </div>
 </div>
 @endsection
 
 @section('content')
 <div class="container-fluid add-ff-nunito">
-    <div class="row">
-        <div class="col">
-            <div class="tab-content">
-                {{-- <h1>{{request()->path()}}</h1> --}}
-                @include('partials.blog.first_section')
-                @include('partials.blog.second_section')
-                @if(session('autenticacion')->usr_id_dst != 1090)
-                @include('partials.blog.third_section')
-                {{--  @include('partials.blog.fourth_section') --}}
-                @endif
-            </div>
-        </div>
-    </div>
+    @include('partials.local_news.news')
 </div>
 @endsection

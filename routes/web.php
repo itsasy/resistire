@@ -14,6 +14,7 @@ Route::group(['prefix' => 'blog'], function () {
     Route::get('/editar/{id}/{tipo}', 'adminController@updateNews')->name('updateNews');
     Route::post('/guarda', 'adminController@saveUpdateNews')->name('saveUpdateNews');
 });
+
 Route::group(['prefix' => 'adicional'], function () {
     Route::get('/nuevo', 'adminController@regInfo')->name('regInfo');
     Route::post('/guardar', 'adminController@saveInfo')->name('saveInfo');
@@ -77,6 +78,4 @@ Route::resource('alimentos', 'foodSafetyController');
 Route::resource('tipo_alimentos', 'foodSafetyTypesController');
 Route::get('/toChart', 'adminController@toChart');
 
-/*Route::view('type', 'typesFoodSafety');
-Route::view('list', 'listFoodSafety');
- */
+Route::get('/noticias-locales', 'adminController@local_news')->name('local_news');

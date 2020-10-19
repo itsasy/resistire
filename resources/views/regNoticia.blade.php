@@ -4,18 +4,18 @@
 <div class="container-fluid pt-5 bg_grad_h h_header">
   <div class="row">
     <div class="col d-flex flex-column align-items-center">
-      <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">REGISTRO DE NOTICIAS 
-            @if(\Request::is('*/locales'))
-              DE {{$distrito}}
-              @elseif(\Request::is('*/nacionales'))
-              NACIONALES 
-              @elseif(\Request::is('*/oficiales'))
-              OFICIALES 
-              @elseif(\Request::is('*/fake'))
-              FALSAS 
-              @elseif(\Request::is('*/mundo'))
-              DEL MUNDO
-              @endif
+      <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">REGISTRO DE NOTICIAS
+        @if(\Request::is('*/locales'))
+        DE {{$distrito}}
+        @elseif(\Request::is('*/nacionales'))
+        NACIONALES
+        @elseif(\Request::is('*/oficiales'))
+        OFICIALES
+        @elseif(\Request::is('*/fake'))
+        FALSAS
+        @elseif(\Request::is('*/mundo'))
+        DEL MUNDO
+        @endif
       </h4>
       <form action="{{route('saveNews')}}" method="POST" enctype="multipart/form-data"
         class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation">
@@ -129,20 +129,21 @@
               </div>
               <div class="form-group col-lg-6">
                 <label for="url">Dirección web</label>
-                <input type="url" name="url" id="url" maxlength="200" class="form-control rounded_1" placeholder="Ingrese dirección web" required>
+                <input type="url" name="url" id="url" maxlength="200" class="form-control rounded_1"
+                  placeholder="Ingrese dirección web" required>
                 <div class="invalid-feedback">Ingrese dirección web</div>
                 <div class="valid-feedback">Dirección web ingresada</div>
               </div>
             </div>
           </div>
           <div class="d-none">
-              <input type="text" id="tipo" name='tipo' value="{{request()->route('tipo')}}">
+            <input type="text" id="tipo" name='tipo' value="{{request()->route('tipo')}}">
           </div>
         </div>
         <div class="form-row justify-content-center">
           <div class="form-group col-lg-4 d-flex">
             <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" @if(\Request::is('*/locales'))
-              href="{{route('noticias', ['seccion'=> "locales"])}}" @elseif(\Request::is('*/nacionales'))
+              href="{{route('local_news')}}" @elseif(\Request::is('*/nacionales'))
               href="{{route('noticias', ['seccion'=> "nacionales"])}}" @elseif(\Request::is('*/oficiales'))
               href="{{route('noticias', ['seccion'=> "oficiales"])}}" @elseif(\Request::is('*/fake'))
               href="{{route('noticias', ['seccion'=> "fake"])}}" @elseif(\Request::is('*/mundo'))
@@ -158,5 +159,5 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('js/script.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
 @endsection

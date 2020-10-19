@@ -1,11 +1,5 @@
-<div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'locales' ? 'show active' : ' '}}"
-    id="LocalesDistritales" role="tabpanel">
-    @if(session('autenticacion')->usr_type_id == 2)
-    <div class="position-fixed mb-1 z_i_1">
-        <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('regNews', ['tipo'=> "locales"])}}"
-            role="button" title="Nuevo"><i class="fas fa-plus"></i></a>
-    </div>
-    @endif
+<div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'administrador' ? 'show active' : ' '}}"
+    id="administrador" role="tabpanel">
     <div class="container">
         <h3 class="text_p txt_c font-weight-bold my-4 text-center text-uppercase">¡NOTICIAS DE
             {{session('distrito')}}!
@@ -42,20 +36,10 @@
                             </p>
                         </div>
                     </div>
-                    @if(session('autenticacion')->usr_type_id == 2)
-                    <div class="rounded_1 d-flex justify-content-end">
-                        <a name="" id="" class="btn btn_circl_outl_p m-1"
-                            href="{{route('updateNews',['tipo'=> 'locales', $news->id])}}" role="button"
-                            title="Editar"><i class="fas fa-pen"></i></a>
-                        <a name="" id="" class="btn btn_circl_outl_p m-1" href="{{route('deleteNews', $news->id)}}"
-                            role="button" title="Eliminar"><i class="fas fa-times"></i></a>
-                    </div>
-                    @endif
                 </div>
             </div>
             @endif
             @endforeach
-
         </div>
     </div>
 </div>

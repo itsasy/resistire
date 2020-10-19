@@ -9,7 +9,7 @@
     <div class="container">
         <h3 class="text_p txt_c font-weight-bold my-4 text-center">¡TU MUNICIPALIDAD!</h3>
         <div class="row">
-            @foreach($infoadi as $info)
+            @forelse($infoadi as $info)
             <div class="col-lg-4">
                 <div class="card mb-3 card_reveal_effect_rotate_y rounded_1 shadow">
                     <div class="inner-img rounded_t_1">
@@ -41,7 +41,11 @@
                     @endif
                 </div>
             </div>
-            @endforeach
+            @empty
+            <div class="container">
+                <h1 class="text-center text-primary">No existen elementos para mostrar.</h1>
+            </div>
+            @endforelse
 
         </div>
     </div>

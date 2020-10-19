@@ -138,7 +138,7 @@
         <div class="form-row justify-content-center">
           <div class="form-group col-lg-4 d-flex">
             <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" @if(\Request::is('*/locales'))
-              href="{{route('noticias', ['seccion'=> "locales"])}}" @elseif(\Request::is('*/nacionales'))
+              href="{{route('local_news')}}" @elseif(\Request::is('*/nacionales'))
               href="{{route('noticias', ['seccion'=> "nacionales"])}}" @elseif(\Request::is('*/oficiales'))
               href="{{route('noticias', ['seccion'=> "oficiales"])}}" @elseif(\Request::is('*/fake'))
               href="{{route('noticias', ['seccion'=> "fake"])}}" @elseif(\Request::is('*/mundo'))
