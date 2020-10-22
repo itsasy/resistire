@@ -39,7 +39,6 @@
                 class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
                 <i class="fas fa-th-large fa-lg"></i>Instituciones públicas
             </a>
-
             <a href="{{route('alimentos.index')}}"
                 class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
                 <i class="fas fa-th-large fa-lg"></i>Seguridad alimentaria
@@ -54,7 +53,7 @@
             @if(auth()->user()->usr_type_id == 1)
             <a href="{{route('noticias', ['seccion'=> "administrador"])}}"
                 class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
-                <i class="fas fa-th-large fa-lg"></i>Noticias del administrador
+                <i class="fas fa-th-large fa-lg"></i>Noticias
             </a>
             @endif
             <a href="{{route('listUsuarios')}}"
