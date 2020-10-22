@@ -3,14 +3,11 @@
 
 @section ('title', 'Lista de asociados')
 
-@section('header')
-<div class="bg_grad_h add-ff-nunito text-center" style="padding:0.7rem;">
-    <div class="justify-content-center">
-        <h3 class="text_p txt_c font-weight-bold my-4 text-center">{{$name}}</h3>
-    </div>
-</div>
-@endsection
 @section('content')
+
+<div class="h_header bg_grad_h d-flex justify-content-center align-items-center">
+    <h3 class="title text-center">{{$name}}</h3>
+</div>
 <div class="col-12 mt-2">
     <div class="position-fixed mb-1 z_i_1">
         <a name="" id="" class="btn btn_circl_outl_p rounded-circle" href="{{route('regCompanies')}}" role="button"

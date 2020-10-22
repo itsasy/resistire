@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section ('title', 'Registrar punto de ayuda')
+@section ('title', 'Registrar seguridad alimentaria')
 @section('content')
 <div class="container-fluid pt-5 bg_grad_h h_header">
     {{-- <div class="position-fixed mb-1 z_i_1 ">
@@ -15,7 +15,8 @@
             {{ csrf_field() }}
             <div class="py-3">
                 <div class="d-flex justify-content-center mb-2">
-                    <p class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
+                    <p
+                        class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
                         Datos del Artículo</p>
                 </div>
                 <div class="subarea_reg rounded_1 pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
@@ -93,21 +94,22 @@
                             <div class="valid-feedback">Fecha ingresada</div>
                         </div>
                         <div class="form-group col-lg-6">
-                        <label for="nws_image">Imagen</label>
-                        <input type="file" class="form-control-file" name="fds_img" id="img" required>
-                        <div class="invalid-feedback">Seleccione imagen</div>
-                        <div class="valid-feedback">Imagen seleccionada</div>
-                        <div class="d-flex justify-content-center pt-3">
-                          <img src="{{asset('images/img_default.png')}}" class="img-fluid rounded_1 img_reg shadow_light"
-                            id="img_output_01" alt="">
+                            <label for="nws_image">Imagen</label>
+                            <input type="file" class="form-control-file" name="fds_img" id="img" required>
+                            <div class="invalid-feedback">Seleccione imagen</div>
+                            <div class="valid-feedback">Imagen seleccionada</div>
+                            <div class="d-flex justify-content-center pt-3">
+                                <img src="{{asset('images/img_default.png')}}"
+                                    class="img-fluid rounded_1 img_reg shadow_light" id="img_output_01" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-row justify-content-center">
                 <div class="form-group col-lg-4 d-flex">
-                    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2"
-                        href="{{URL::previous()}}" role="button"><i class="fas fa-times"></i></a>
+                    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" href="{{URL::previous()}}"
+                        role="button"><i class="fas fa-times"></i></a>
                     <button class="btn btn_grad_reg col rounded-pill" type="submit">Registrar<i
                             class="fas fa-angle-double-right ml-2"></i></button>
                 </div>
@@ -115,7 +117,7 @@
         </form>
     </div>
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,10 +135,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
 
 @section('script')
-    <script src="{{asset('js/script.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
 @endsection

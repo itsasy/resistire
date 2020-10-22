@@ -14,16 +14,16 @@
                     data-toggle="tab" href="#administrador" id="localesTab" role="tab">Noticias</a>
             </li>
             @endif
-            <li class="nav-item mx-lg-4 {{Request::segment(2) == 'puntos' ? 'active' : ' '}}">
+            {{-- <li class="nav-item mx-lg-4 {{Request::segment(2) == 'puntos' ? 'active' : ' '}}">
                 <a aria-controls="Puntos" aria-selected="true" class="nav-link font-weight-bold" data-toggle="tab"
                     href="#Puntos" id="puntosTab" role="tab">Instituciones públicas</a>
-            </li>
-            @if(session('autenticacion')->usr_id_dst != 1090)
+            </li> --}}
+            {{-- @if(session('autenticacion')->usr_id_dst != 1090)
             <li class="nav-item mx-lg-4 {{Request::segment(2) == 'municipalidad' ? 'active' : ' '}}">
                 <a aria-controls="Adicional" aria-selected="true" class="nav-link font-weight-bold" data-toggle="tab"
                     href="#Adicional" id="adicionalTab" role="tab">Tu municipalidad</a>
             </li>
-            @endif
+            @endif --}}
             <li class="nav-item">
                 <a class="nav-link font-weight-bold"
                     href="  {{route('Mapa', [ session('distrito'), session('id_distrito'), session('nom_provincia')])}}"

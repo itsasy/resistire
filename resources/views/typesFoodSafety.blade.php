@@ -12,9 +12,6 @@
     <button type="button" class="btn btn_circl_outl_p rounded-circle" data-toggle="modal" data-target="#modalRegister">
         <i class="fas fa-plus"></i>
     </button>
-
-    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mt-2" href="{{route('Index')}}" role="button" title="Nuevo"><i
-            class="fas fa-arrow-left"></i></a>
 </div>
 
 <div class="col-12 d-flex justify-content-center mt-2">

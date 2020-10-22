@@ -5,8 +5,6 @@
             title="Nuevo"><i class="fas fa-plus"></i></a>
     </div>
     <div class="container">
-        <h3 class="text_p txt_c font-weight-bold my-4 text-center">¡INSTITUCIONES PÚBLICAS
-            {{session('distrito')}}!</h3>
         <div class="row">
             @forelse($puntos as $points)
             <div class="col-lg-4">

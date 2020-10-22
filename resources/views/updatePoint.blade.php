@@ -4,7 +4,7 @@
 <div class="container-fluid pt-5 bg_grad_h h_header">
   <div class="row">
     <div class="col d-flex flex-column align-items-center">
-      <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">REGISTRO DE PUNTOS DE AYUDA
+      <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">ACTUALIZACIÓN DE INSTITUCIÓN PÚBLICA
       </h4>
       <form action="{{route('saveUpdatePoint')}}" method="POST" enctype="multipart/form-data"
         class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation"
@@ -63,9 +63,9 @@
         </div>
         <div class="form-row justify-content-center">
           <div class="form-group col-lg-4 d-flex">
-            <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" href="{{route('noticias', ['seccion'=> "puntos"])}}" role="button"><i
+            <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" href="{{route('public_institutions')}}" role="button"><i
                 class="fas fa-times"></i></a>
-            <button class="btn btn_grad_reg col rounded-pill" type="submit">Registrar<i
+            <button class="btn btn_grad_reg col rounded-pill" type="submit">ACTUALIZAR<i
                 class="fas fa-angle-double-right ml-2"></i></button>
           </div>
         </div>

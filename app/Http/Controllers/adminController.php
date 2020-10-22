@@ -38,16 +38,8 @@ class adminController extends Controller
 
     public function news($seccion)
     {
-        if (session('autenticacion')->usr_type_id == 2) {
-            $puntos = tb_points::where('atp_id_dst', [session('autenticacion')->usr_id_dst])->get();
-            $infoadi = tb_infoadi::where('adi_id_adit', [session('autenticacion')->usr_id_dst])->get();
-            return view('blog', compact('puntos', 'infoadi'));
-        }
-
         $noticias = tb_news::orderBy('nws_date', 'desc')->get();
-        $puntos = tb_points::get();
-        $infoadi = tb_infoadi::get();
-        return view('blog', compact('noticias', 'puntos', 'seccion', 'infoadi'));
+        return view('blog', compact('noticias'));
     }
 
     public function regNews()
@@ -255,7 +247,7 @@ class adminController extends Controller
 
             $tb_points->save();
 
-            return redirect()->route('noticias', ['seccion' => 'puntos']);
+            return redirect()->route('public_institutions');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -270,7 +262,7 @@ class adminController extends Controller
             Storage::disk('points')->delete($tb_points->atp_img);
             $tb_points->delete();
 
-            return redirect()->route('noticias', ['seccion' => 'puntos']);
+            return redirect()->route('public_institutions');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -306,7 +298,7 @@ class adminController extends Controller
 
             $tb_points->save();
 
-            return redirect()->route('noticias', ['seccion' => 'puntos']);
+            return redirect()->route('public_institutions');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -500,13 +492,29 @@ class adminController extends Controller
         }
     }
 
-    public function local_news(){
+    public function local_news()
+    {
         $name = tb_district::where('id', auth()->user()->usr_id_dst)->pluck('dst_name')[0];
 
         $noticias = tb_news::where('nws_id_dst', auth()->user()->usr_id_dst)->where('nws_id_nwst', 1)->orderBy('nws_date', 'desc')->get();
 
 
         return view('noticias', compact('name', 'noticias'));
+    }
+
+    public function public_institutions()
+    {
+        $name = tb_district::where('id', auth()->user()->usr_id_dst)->pluck('dst_name')[0];
+
+        if (session('autenticacion')->usr_type_id == 2) {
+            $puntos = tb_points::where('atp_id_dst', [session('autenticacion')->usr_id_dst])->get();
+
+            return view('public_institutions', compact('name', 'puntos'));
+        }
+
+        $puntos = tb_points::get();
+
+        return view('public_institutions', compact('name', 'puntos'));
     }
 
     public function banCompanies($id)

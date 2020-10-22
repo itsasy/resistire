@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section ('title', 'Registrar punto de ayuda')
+@section ('title', 'Actualizar seguridad alimentaria')
 @section('content')
+
 <div class="container-fluid pt-5 bg_grad_h h_header">
     {{-- <div class="position-fixed mb-1 z_i_1 ">
         <button type="button" class="btn btn_circl_outl_p rounded-circle" data-toggle="modal" data-target="#modal"
@@ -41,9 +42,11 @@
                         <div class="form-group col-lg-12">
                             <label for="fds_id_fdst">Categoría</label>
                             <select name="fds_id_fdst" class="form-control rounded_1" required>
-                                <option value="#" selected disabled>Seleccione</option>
+                                <option value="#"  disabled>Seleccione</option>
                                 @foreach ($types as $tipo)
-                                <option value="{{$tipo->id}}">{{$tipo->fdst_desc}}</option>
+                                <option @if($tipo->id == $article->fds_id_fdst) 'selected' @endif value="{{$tipo->id}}" >
+                                    {{$tipo->fdst_desc}} 
+                                </option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">Seleccione categoría</div>
@@ -102,7 +105,7 @@
                             <div class="valid-feedback">Imagen seleccionada</div>
                             <div class="d-flex justify-content-center pt-3">
                                 <img src=" {{url("storage/foodSafety/"). '/'.$article->fds_img}}"
-                                onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}'"
+                                    onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}'"
                                     class="img-fluid rounded_1 img_reg shadow_light" id="img_output_01" alt="">
                             </div>
                         </div>
@@ -113,14 +116,14 @@
                 <div class="form-group col-lg-4 d-flex">
                     <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" href="{{URL::previous()}}"
                         role="button"><i class="fas fa-times"></i></a>
-                    <button class="btn btn_grad_reg col rounded-pill" type="submit">Registrar<i
+                    <button class="btn btn_grad_reg col rounded-pill" type="submit">Actualizar<i
                             class="fas fa-angle-double-right ml-2"></i></button>
                 </div>
             </div>
         </form>
     </div>
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -138,6 +141,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

@@ -1,9 +1,9 @@
-<div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'administrador' ? 'show active' : ' '}}"
-    id="administrador" role="tabpanel">
+{{-- <div aria-labelledby="localesTab" class="tab-pane fade {{Request::segment(2) == 'administrador' ? 'show active' : ' '}}"
+    id="administrador" role="tabpanel"> --}}
     <div class="container">
-        <h3 class="text_p txt_c font-weight-bold my-4 text-center text-uppercase">¡NOTICIAS DE
+        {{-- <h3 class="text_p txt_c font-weight-bold my-4 text-center text-uppercase">¡NOTICIAS DE
             {{session('distrito')}}!
-        </h3>
+        </h3> --}}
         <div class="row">
             @foreach($noticias as $news)
             @if($news->nws_id_nwst == 1)
@@ -42,4 +42,4 @@
             @endforeach
         </div>
     </div>
-</div>
+{{-- </div> --}}

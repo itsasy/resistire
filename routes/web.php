@@ -79,3 +79,4 @@ Route::resource('tipo_alimentos', 'foodSafetyTypesController');
 Route::get('/toChart', 'adminController@toChart');
 
 Route::get('/noticias-locales', 'adminController@local_news')->name('local_news');
+Route::get('/instituciones-publicas', 'adminController@public_institutions')->name('public_institutions');
