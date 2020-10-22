@@ -9,8 +9,8 @@
 
 @section('content')
 
-<div class="h_header bg_grad_h d-flex justify-content-center align-items-center">
-    <h2 class="title text-center">ALERTAS DE {{$district}}</h2>
+<div class="h_header bg_grad_h d-flex justify-content-center align-items-center pt-5 pt-md-0">
+    <h3 class="title text-center">ALERTAS DE {{$district}}</h3>
 </div>
 
 <div class="container-fluid barra">
@@ -70,19 +70,17 @@
 
      <div class="modal fade" id="ModalPuntoAtencion" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <hr>
-                <div class="modal-header justify-content-center">
-
-                    <h5 id="nombrePoint" class="text_p font-weight-bold"></h5>
+            <div class="modal-content rounded_1">
+                <div class="modal-header justify-content-center align-items-center bg_grad_h mh_5 p-0">
+                    <h5 id="nombrePoint" class="text-white font-weight-bold m-0"></h5>
                 </div>
                 <div class="modal-body row">
 
 
                     <div class="col-lg-6">
-                        <h5>Ubicación:</h5>
+                        <p class="font-weight-bold">Ubicación:</p>
                         <p id="lugarPoint" class="text-secondary"></p>
-                        <h5>Página Web:</h5>
+                        <p class="font-weight-bold">Página Web:</p>
                         <p class="text-secondary"><a id="webPoint" href="" id="w3s"></a></p>
                         <p id="date" class="text-secondary text-right"></p>
                     </div>
@@ -93,7 +91,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn_p" id="atendidoPoint"><i id='loadCircle' class='fa fa-circle-o-notch fa-spin'></i>&nbsp;Aceptar</button>
+                    <button type="submit" class="btn btn_p" id="atendidoPoint"><i id='loadCircle' class='fa fa-circle-o-notch fa-spin'></i>&nbsp;Cerrar</button>
                 </div>
 
             </div>

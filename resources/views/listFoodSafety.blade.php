@@ -1,14 +1,17 @@
 @extends('layouts.app')
+@include('layouts.btn_return_map')
 
 @section ('title', 'Noticias')
 
 @section('header')
+
 <div class="bg_grad_h add-ff-nunito text-center" style="padding:0.7rem;">
     <div class="justify-content-center">
         <h3 class="text_p txt_c font-weight-bold my-4 text-center">{{$name}}</h3>
     </div>
 </div>
 @endsection
+
 @section('content')
 <div class="col-12 mt-2">
     <div class="position-fixed mb-1 z_i_1 justify-content-left col-12">

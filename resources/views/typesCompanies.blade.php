@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.btn_return_map')
+
 @section ('title', 'Empresas responsables')
 
 @section('content')
