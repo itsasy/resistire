@@ -15,10 +15,10 @@ var año = new Date().getFullYear();
 
 $.getJSON('toChart', function (respuesta) {
     respuesta.reverse().forEach(element => {
-        if (element.año != año)
-            nombres.push(`${meses[Number(element.mes)]} ${element.año}`)
-        else
-            nombres.push(meses[Number(element.mes)]);
+        if (element.año != año){
+            nombres.push(`${meses[Number(element.mes)-1]} ${element.año}`)
+        }else
+            nombres.push(meses[Number(element.mes)-1]);
         Serenazgo.push(element.Serenazgo);
         Ambulancia.push(element.Ambulancia);
         Bomberos.push(element.Bomberos);

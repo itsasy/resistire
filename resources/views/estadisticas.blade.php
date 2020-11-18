@@ -56,6 +56,6 @@
 @section('script')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
-<script type="module" src="{{asset('js/chart-area-demo1.js')}}"></script>
+<script type="module" src="{{asset('js/chart-area-demo.js')}}"></script>
 <script type="module" src="{{asset('js/chart-pie-demo.js')}}"></script>
 @endsection
