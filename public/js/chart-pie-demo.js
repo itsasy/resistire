@@ -51,7 +51,7 @@ var myPieChart = new Chart(ctx, {
         plugins: {
             labels: [{
                 render: 'value',
-                fontColor: '#666',
+                fontColor: '#FFFFFF',
                 fontStyle: 'bold',
             }],
             

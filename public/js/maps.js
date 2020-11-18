@@ -296,7 +296,7 @@ function ModalPoint(marker , nombre, direccion, url, image) {
         $("#webPoint").attr("href", url);
 
         if (image != null) {
-            $("#imgPoint").html("<img class='img-fluid' src='"+ image +"'\>");
+            $("#imgPoint").html("<img class='img-fluid rounded' src='"+ image +"'\>");
         }
 
         $('#ModalPuntoAtencion').modal('show');

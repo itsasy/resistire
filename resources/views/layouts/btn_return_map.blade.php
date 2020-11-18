@@ -1,7 +1,8 @@
 @section('btn_return_map')
 <div class="container-fluid">
-    <a href="{{route('Mapa', [ session('distrito'), session('id_distrito'), session('nom_provincia')])}}" id="" class="btn btn_transp my-2 position-absolute">
-        <i class="fas fa-times"></i>
-    </a>
+   <a name="" id="" class="btn btn_transp mt-2 position-absolute" href="{{route('Mapa', [ session('distrito'), session('id_distrito'), session('nom_provincia')])}}" role="button">
+      <i class="fas fa-angle-left mr-0 mr-md-2"></i>
+      <spam class="d-none d-md-inline">@lang('string.main')</spam>
+   </a>
 </div>
 @endsection

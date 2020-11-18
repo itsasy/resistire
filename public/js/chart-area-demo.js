@@ -1,4 +1,4 @@
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontFamily = 'Roboto', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
 var ctx = document.getElementById("myAreaChart");
@@ -72,23 +72,23 @@ var myLineChart = new Chart(ctx, {
         labels: nombres,
         datasets: [{
             label: "SERENAZGO",
-            borderColor: "#8e5ea2",
+            borderColor: "#00B4DB",
             data: Serenazgo,
         }, {
             label: "AMBULANCIA",
-            borderColor: "#3cba9f",
+            borderColor: "#01CEFB",
             data: Ambulancia,
         }, {
-            label: "BOMBEROS",
-            borderColor: "#3e95cd",
+            label: "BOMBERO",
+            borderColor: "#CC312D",
             data: Bomberos,
         }, {
             label: "FISCALIZACIÓN",
-            borderColor: '',
+            borderColor: '#F8CF27',
             data: Fiscalización,
         }, {
-            label: "ALERTA MUJER",
-            borderColor: "rgba(78, 115, 223, 1)",
+            label: "CEM",
+            borderColor: "#ffcdd2",
             data: Mujer,
         }],
     },

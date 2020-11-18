@@ -4,12 +4,12 @@
 @section ('title', 'Instituciones públicas')
 
 @section('content')
-<div class="h_header bg_grad_h d-flex justify-content-center align-items-center">
-    <h3 class="title text-center">Instituciones públicas de {{$name}}
-    </h3>
+<div class="header pt-5 pt-md-0">
+   <h3 class="header_title d-none d-md-block">@lang('string.public_institutions_of') {{$name}}</h3>
+   <h4 class="header_title d-block d-md-none">@lang('string.public_institutions_of') {{$name}}</h4>
 </div>
 
-<div class="container-fluid add-ff-nunito mt-2">
+<div class="container-fluid mt-3">
     @include('partials.blog.second_section')
 </div>
 @endsection

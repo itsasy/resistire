@@ -5,13 +5,12 @@
 @section ('title', 'Noticias')
 
 @section('content')
-
-<div class="h_header bg_grad_h d-flex justify-content-center align-items-center">
-    <h3 class="title text-center">Noticias de {{$name}}
-    </h3>
+<div class="header pt-5 pt-md-0">
+   <h3 class="header_title d-none d-md-block">@lang('string.news_of') {{$name}}</h3>
+   <h4 class="header_title d-block d-md-none">@lang('string.news_of') {{$name}}</h4>
 </div>
 
-<div class="container-fluid add-ff-nunito mt-2">
+<div class="container pt-4">
     @include('partials.local_news.news')
 </div>
 @endsection

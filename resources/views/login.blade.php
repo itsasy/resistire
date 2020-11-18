@@ -3,41 +3,51 @@
 @section ('title', 'Login')
 
 @prepend('styles')
-<link rel="stylesheet" href="{{asset('css/base_backgroundimage_style.css')}}">
+<link rel="stylesheet" href="{{asset('css/style_background.css')}}">
 @endprepend
 
 @section('content')
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col h_100_vh d-flex justify-content-center align-items-center">
-            <form action="{{route('logeo')}}" method="POST" class="login_form text-center bg-white rounded_1 shadow">
-                {{csrf_field()}}
-                <div class="form-group p-4">
-                    <img src="{{asset('images/resistire_logo.png')}}" alt="login" class="img-fluid" width="120">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="username" id="" class="form-control form-control-lg rounded-pill"
-                        placeholder="Usuario">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" id="" class="form-control form-control-lg rounded-pill"
-                        placeholder="Contraseña">
-                </div>
-                <div class="forgot-link d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                        <label class="form-check-label text-secondary">
-                            <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
-                            Recordar contraseña
-                        </label>
-                    </div>
-                    <a href="#" class="font-weight-bold text_p">Olvidaste tu contraseña?</a>
-                </div>
-                <button type="submit" class="btn btn-lg mt-5 btn_grad_reg btn-block rounded-pill text-uppercase">
-                    INGRESAR<i class="fas fa-chevron-right ml-2"></i>
-                </button>
-            </form>
-        </div>
+<div class="container_login">
+  <div class="login shadow col-md-8 col-lg-5">
+    <div class="login_img_layout">
+      <img src="{{asset('images/logo/logo_resistire.png')}}" alt="login" class="img-fluid login_img">
     </div>
+    <div class="login_form_layout">
+      <form action="{{route('logeo')}}" method="POST" class="needs-validation py-3 col-md-8 col-lg-7 form_reg"
+        novalidate>
+        {{csrf_field()}}
+        <div class="text-center text-md-left">
+          <h4 class="text_p text-uppercase font-weight-bold">@lang('string.login')</h4>
+        </div>
+        <div class="form-row my-5">
+          <div class="col-12 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="user" name="username" placeholder="@lang('string.user')" maxlength="50" required>
+              <div class="valid-feedback">@lang('string.correct')</div>
+              <div class="invalid-feedback">@lang('string.enter_user')</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+              </div>
+              <input type="password" class="form-control" id="password" name="password" placeholder="@lang('string.password')" maxlength="100" required>
+              <div class="valid-feedback">@lang('string.correct')</div>
+              <div class="invalid-feedback">@lang('string.enter_user')</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center text-md-right">
+          <button class="btn btn-danger rounded-pill px-5" type="submit">@lang('string.enter')</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
 @endsection

@@ -6,68 +6,46 @@
 
 :root {
     /*YAUYOS*/
-    /*--c_primary: #3E94A3;*/
-    /*--c_accent: #E6BD53;*/
-    /*--ff_roboto: 'Roboto', sans-serif;*/
-    --c_primary: #3E94A3;
-    --c_primaryDark: #d32f2f;
-    --c_accent: #E6BD53;
-    --c_white: #FFFFFF;
-    --sh_primary: 0 0 0 0.2rem rgba(0, 180, 219, 0.3);
-    --sh_primaryDark: 0 0 0 0.2rem rgba(0, 131, 176, 0.3);
-    --sh_light: 0 0 0 0.2rem rgba(225, 225, 225, 0.3);
-    --sh_base: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    --sh_base_light: 0 .5rem 1rem rgba(170, 167, 167, 0.15);
-
-    --c_label: #6C757D;
-    --c_grey_light: rgb(173, 176, 179);
-    
-    --ff-exo2: 'Exo 2', sans-serif;
-    --ff_roboto: 'Roboto', sans-serif;
-    --bg_grad_h: linear-gradient(To right, #3E94A3, #E6BD53);
-    --bg_gradDark_h: linear-gradient(To right, rgb(0, 120, 160), rgb(4, 166, 202));
-    --bg_grad_v: linear-gradient(90deg, #3E94A3, #E6BD53);
+    /*--c-primary: #3E94A3;*/
+    /*--c-accent: #E6BD53;*/
+    /*--ff-roboto: 'Roboto', sans-serif;*/
+    --c-primary: #3E94A3;
+    --c-primary-rgb: 62,148,163;
+    --c-accent: #E6BD53;
+    --sh-primary: 0 0 0 0.2rem rgba(0, 180, 219, 0.3);
+    --ff-roboto: 'Roboto', sans-serif;
+    --bg-grad-h: linear-gradient(To right, #3E94A3, #E6BD53);
+    --bg-grad-v: linear-gradient(90deg, #3E94A3, #E6BD53);
 }
-
-/* FONT FAMILY */
-body {
-    font-family: var(--ff_roboto);
-}
-
-/*.title {
-    font-family: var(--ff_exo2);
-    text-transform: uppercase;
-    color: white;
-}*/
 
 /* COLOR TEXT */
 .text_p {
-    color: var(--c_primary);
+    color: var(--c-primary);
 }
 
 .text_a {
-    color: var(--c_accent);
+    color: var(--c-accent);
 }
 
 /* BACKGROUNDS */
 .bg_primary {
-    background: var(--c_primary);
+    background: var(--c-primary);
 }
 
 .bg_grad_h {
-    background-image: var(--bg_grad_h);
+    background-image: var(--bg-grad-h);
 }
 
 .bg_grad_v {
-    background-image: var(--bg_grad_v);
+    background-image: var(--bg-grad-v);
 }
 
 /*BUTTONS*/
 .btn_p {
-    background-color: var(--c_primary);
-    color: var(--c_white);
+    background-color: var(--c-primary);
+    color: var(--c-white);
 }
 .btn_p:hover {
-    background-color: var(--c_accent);
-    color: var(--c_white);
+    background-color: var(--c-accent);
+    color: var(--c-white);
 }

@@ -1,146 +1,104 @@
 @extends('layouts.app')
+@include('layouts.btn_previous')
 @section ('title', 'Actualizar seguridad alimentaria')
 @section('content')
-
-<div class="container-fluid pt-5 bg_grad_h h_header">
-    {{-- <div class="position-fixed mb-1 z_i_1 ">
-        <button type="button" class="btn btn_circl_outl_p rounded-circle" data-toggle="modal" data-target="#modal"
-            title="Agregar Categoría">
-            <i class="fas fa-plus"></i>
-        </button>
-    </div> --}}
-    <div class="col d-flex flex-column align-items-center">
-        <h4 class="text-center text-white text-uppercase mt-2 mb-4 ff_saira">ACTUALIZANDO SEGURIDAD ALIMENTARIA
-        </h4>
-        <form action="{{route('alimentos.update', $article->id)}}" method="POST" enctype="multipart/form-data"
-            class="col-lg-8 col-md-10 px-3 px-sm-4 pt-3 pt-sm-4 pb-1 mb-4 form_reg bg-white rounded_1 shadow needs-validation"
-            novalidate>
-            @method('PUT')
-            {{ csrf_field() }}
-            <div class="py-3">
-                <div class="d-flex justify-content-center mb-2">
-                    <p
-                        class="subarea_reg font-weight-bold text-secondary text-center py-2 px-3 position-absolute mt-n3 bg-white rounded_1">
-                        Datos del Artículo</p>
-                </div>
-                <div class="subarea_reg rounded_1 pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
-                    <div class="form-row d-flex justify-content-center">
-                        <div class="form-group col-lg-12">
-                            <label for="fds_title">Título</label>
-                            <input type="text" name="fds_title" id="fds_title" class="form-control rounded_1"
-                                placeholder="Ingrese el nombre" value="{{$article->fds_title}}" required>
-                            <div class="invalid-feedback">Ingrese el título</div>
-                            <div class="valid-feedback">Título ingresado</div>
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <label for="fds_desc">Descripción</label>
-                            <input type="text" name="fds_desc" id="fds_desc" class="form-control rounded_1"
-                                placeholder="Ingrese la descripción" value="{{$article->fds_desc}}" required>
-                            <div class="invalid-feedback">Ingrese la descripción</div>
-                            <div class="valid-feedback">Descripción ingresada</div>
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <label for="fds_id_fdst">Categoría</label>
-                            <select name="fds_id_fdst" class="form-control rounded_1" required>
-                                <option value="#"  disabled>Seleccione</option>
-                                @foreach ($types as $tipo)
-                                <option @if($tipo->id == $article->fds_id_fdst) 'selected' @endif value="{{$tipo->id}}" >
-                                    {{$tipo->fdst_desc}} 
-                                </option>
-                                @endforeach
-                            </select>
-                            <div class="invalid-feedback">Seleccione categoría</div>
-                            <div class="valid-feedback">Categoría seleccionada</div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="fds_source">Fuente</label>
-                            <input type="text" name="fds_source" id="fds_source" class="form-control rounded_1"
-                                placeholder="Ingrese la fuente" value="{{$article->fds_source}}" required>
-                            <div class="invalid-feedback">Ingrese la fuente</div>
-                            <div class="valid-feedback">Fuente ingresada</div>
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="fds_url">Dirección web</label>
-                            <input type="text" name="fds_url" id="fds_url" class="form-control rounded_1"
-                                placeholder="Ingrese la dirección web" value="{{$article->fds_url}}" required>
-                            <div class="invalid-feedback">Ingrese la dirección web</div>
-                            <div class="valid-feedback">Dirección web ingresada</div>
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="fds_youtube">Youtube</label>
-                            <input type="text" name="fds_youtube" id="fds_youtube" class="form-control rounded_1"
-                                placeholder="Ingrese vídeo de youtube" value="{{$article->fds_youtube}}">
-                            <div class="invalid-feedback">Ingrese la dirección del vídeo</div>
-                            <div class="valid-feedback">Vídeo ingresado</div>
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="fds_instagram">Instagram</label>
-                            <input type="text" name="fds_instagram" id="fds_instagram" class="form-control rounded_1"
-                                placeholder="Ingrese vídeo de youtube" value="{{$article->fds_instagram}}">
-                            <div class="invalid-feedback">Ingrese la dirección Instagram</div>
-                            <div class="valid-feedback">Instagram ingresado</div>
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="fds_facebook">Facebook</label>
-                            <input type="text" name="fds_facebook" id="fds_facebook" class="form-control rounded_1"
-                                placeholder="Ingrese la dirección Facebook" value="{{$article->fds_facebook}}">
-                            <div class="invalid-feedback">Ingrese la dirección Facebook</div>
-                            <div class="valid-feedback">Facebook ingresado</div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="fds_date">Fecha</label>
-                            <input type="date" name="fds_date" id="fds_date" class="form-control rounded_1"
-                                placeholder="Ingrese la fecha" value="{{$article->fds_date}}">
-                            <div class="invalid-feedback">Seleccione la fecha</div>
-                            <div class="valid-feedback">Fecha ingresada</div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="fds_img">Imagen</label>
-                            <input type="file" class="form-control-file" name="fds_img" id="fds_img">
-                            <div class="invalid-feedback">Seleccione imagen</div>
-                            <div class="valid-feedback">Imagen seleccionada</div>
-                            <div class="d-flex justify-content-center pt-3">
-                                <img src=" {{url("storage/foodSafety/"). '/'.$article->fds_img}}"
-                                    onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}'"
-                                    class="img-fluid rounded_1 img_reg shadow_light" id="img_output_01" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="header_form pt-5 pt-md-0 pb-3">
+   <h3 class="header_form_title d-none d-md-block">@lang('string.update_food_safety')</h3>
+   <h4 class="header_form_title d-block d-md-none">@lang('string.update_food_safety')</h4>
+</div>
+<div class="container-fluid mt-n3 mt-md-n5 pb-4 px-0 d-flex justify-content-center">
+   <form action="{{route('alimentos.update', $article->id)}}" method="POST" enctype="multipart/form-data" class="col-md-10 col-lg-8 p-2 p-md-4 form_reg shadow border needs-validation" novalidate>
+      {{ csrf_field() }}
+      <div class="py-3">
+         <div class="d-flex justify-content-center mb-2">
+            <p class="sub_title text-center py-2 px-3 position-absolute mt-n3">@lang('string.general_data')</p>
+         </div>
+         <div class="sub_title_bg pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
+            <div class="form-row d-flex justify-content-center">
+               <div class="form-group col-md-6">
+                  <label for="fds_title">@lang('string.title')</label>
+                  <input type="text" name="fds_title" id="fds_title" class="form-control" placeholder="@lang('string.enter_title')" value="{{$article->fds_title}}" maxlength="200" required>
+                  <div class="invalid-feedback">@lang('string.enter_title')</div>
+                  <div class="valid-feedback">@lang('string.title_entered')</div>
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="fds_id_fdst">@lang('string.category')</label>
+                  <select name="fds_id_fdst" class="form-control " required>
+                     <option value="#" disabled="disabled">@lang('string.select')</option>
+                     @foreach ($types as $tipo)
+                     <option @if($tipo->id == $article->fds_id_fdst) 'selected' @endif value="{{$tipo->id}}">{{$tipo->fdst_desc}}</option>
+                     @endforeach
+                  </select>
+                  <div class="invalid-feedback">@lang('string.select_category')</div>
+                  <div class="valid-feedback">@lang('string.category_selected')</div>
+               </div>
+               <div class="form-group col-12">
+                  <label for="fds_desc">@lang('string.description')</label>
+                  <input type="text" name="fds_desc" id="fds_desc" class="form-control" placeholder="@lang('string.enter_description')" value="{{$article->fds_desc}}" maxlength="500" required>
+                  <div class="invalid-feedback">@lang('string.enter_description')</div>
+                  <div class="valid-feedback">@lang('string.description_entered')</div>
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="fds_source">@lang('string.source')</label>
+                  <input type="text" name="fds_source" id="fds_source" class="form-control" placeholder="@lang('string.enter_source')" value="{{$article->fds_source}}" maxlength="200" required>
+                  <div class="invalid-feedback">@lang('string.enter_source')</div>
+                  <div class="valid-feedback">@lang('string.source_entered')</div>
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="fds_date">@lang('string.date')</label>
+                  <input type="date" name="fds_date" id="fds_date" class="form-control" placeholder="@lang('string.select_date')" value="{{$article->fds_date}}" maxlength="200" required>
+                  <div class="invalid-feedback">@lang('string.select_date')</div>
+                  <div class="valid-feedback">@lang('string.date_selected')</div>
+               </div>
+               <div class="form-group col-12">
+                  <label for="img">@lang('string.image')</label>
+                  <input type="file" class="form-control-file text-truncate" name="fsd_img" id="img" required>
+                  <div class="invalid-feedback">@lang('string.select_image')</div>
+                  <div class="valid-feedback">@lang('string.image_selected')</div>
+                  <div class="d-flex justify-content-center pt-3">
+                     <img src="{{url("storage/foodSafety/"). '/'.$article->fds_img}}" onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}'" class="img-fluid img_reg" id="img_output_01" alt="">
+                  </div>
+               </div>
             </div>
-            <div class="form-row justify-content-center">
-                <div class="form-group col-lg-4 d-flex">
-                    <a name="" id="" class="btn btn_circl_outl_p rounded-circle mr-2" href="{{URL::previous()}}"
-                        role="button"><i class="fas fa-times"></i></a>
-                    <button class="btn btn_grad_reg col rounded-pill" type="submit">Actualizar<i
-                            class="fas fa-angle-double-right ml-2"></i></button>
-                </div>
+         </div>
+      </div>
+      <div class="py-3">
+         <div class="d-flex justify-content-center mb-2">
+            <p class="sub_title text-center py-2 px-3 position-absolute mt-n3">@lang('string.social_networks') @lang('string.optional')</p>
+         </div>
+         <div class="sub_title_bg pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
+            <div class="form-row">
+               <div class="form-group col-lg-6">
+                  <label for="fsd_instagram">@lang('string.instagram')</label>
+                  <input type="url" name="fsd_instagram" id="fsd_instagram" class="form-control" placeholder="@lang('string.enter_instagram')" value="{{$article->fds_instagram}}" maxlength="200">
+                  <div class="invalid-feedback">@lang('string.enter_instagram')</div>
+                  <div class="valid-feedback">@lang('string.instagram_entered')</div>
+               </div>
+               <div class="form-group col-lg-6">
+                  <label for="fsd_facebook">@lang('string.facebook')</label>
+                  <input type="url" name="fsd_facebook" id="fsd_facebook" class="form-control" placeholder="@lang('string.enter_facebook')" value="{{$article->fds_facebook}}" maxlength="200">
+                  <div class="invalid-feedback">@lang('string.enter_facebook')</div>
+                  <div class="valid-feedback">@lang('string.facebook_entered')</div>
+               </div>
+               <div class="form-group col-lg-6">
+                  <label for="fsd_youtube">@lang('string.youtube')</label>
+                  <input type="url" name="fsd_youtube" id="fsd_youtube" class="form-control" placeholder="@lang('string.enter_youtube')" value="{{$article->fds_youtube}}" maxlength="200">
+                  <div class="invalid-feedback">@lang('string.enter_youtube')</div>
+                  <div class="valid-feedback">@lang('string.youtube_entered')</div>
+               </div>
+               <div class="form-group col-lg-6 ">
+                  <label for="fsd_url">@lang('string.webpage')</label>
+                  <input type="url" name="fsd_url" id="fsd_url" class="form-control" placeholder="@lang('string.enter_webpage')" value="{{$article->fds_url}}" maxlength="200">
+                  <div class="invalid-feedback">@lang('string.enter_webpage')</div>
+                  <div class="valid-feedback">@lang('string.webpage_entered')</div>
+               </div>
             </div>
-        </form>
-    </div>
-
-    {{-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Crear categoría</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="fdst_desc">Nombre de categoría</label>
-                        <input type="text" name="fdst_desc" id="fdst_desc" class="form-control" placeholder="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+         </div>
+      </div>
+      <div class="form-group d-flex justify-content-between mb-0">
+         <a name="" id="" class="btn btn_outl_p rounded-pill" href="{{URL::previous()}}" role="button"><i class="fas fa-times mr-2"></i>@lang('string.cancel')</a>
+         <button class="btn btn_p rounded-pill" type="submit">@lang('string.update')<i class="fas fa-angle-right ml-2"></i></button>
+      </div>
+   </form>
 </div>
 @endsection
