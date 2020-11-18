@@ -112,16 +112,16 @@ class adminController extends Controller
 
             $nws->nws_date = Carbon::parse($request->nws_date . ' ' . $request->hora)->format('Y-m-d h:i:s');
 
-
             if ($request->hasFile('nws_image') && $request->file('nws_image')->isValid()) {
-                Storage::disk('news')->delete($nws->nws_image);
+                Storage::disk('news')->delete($nws->nws_img);
                 $imagen = $request->file('nws_image');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('m-d-Y_h-m-s_a.') . $request->file('nws_image')->extension()));
                 Storage::disk('news')->put($filename,  File::get($imagen));
-                $nws->nws_image = $filename;
+                $nws->nws_img = $filename;
             }
+            
             $nws->save();
-
+            
             if ($request->tipo == 'locales') {
                 return redirect()->route('local_news');
             }

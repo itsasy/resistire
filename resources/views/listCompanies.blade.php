@@ -54,7 +54,7 @@
                   @else
                      class="btn m-1 btn_circl_outl_p" href="{{$element->cmp_url}}" target="_blank"
                   @endif
-                  role="button" title="@lang('string.instagram')"><i class="far fa-window-maximize"></i></a>
+                  role="button" title="@lang('string.website')"><i class="far fa-window-maximize"></i></a>
                </div>
             </div>
             

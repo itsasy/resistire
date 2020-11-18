@@ -9,9 +9,9 @@
    <h4 class="header_title d-block d-md-none">@lang('string.food_safety')</h4>
 </div>
 
-<div class="container pt-4">
+<div class="container pt-3">
    <div class="row">
-      <div class="col-12 text-center mb-4">
+      <div class="col-12 text-center mb-3">
          <a name="" id="" class="btn btn_outl_p rounded-pill" href="#" role="button" data-toggle="modal" data-target="#modalRegister">
             <i class="fas fa-plus mr-2"></i>@lang('string.register')</a>
       </div>

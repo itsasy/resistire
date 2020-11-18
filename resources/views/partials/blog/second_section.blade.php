@@ -8,11 +8,21 @@
          <div class="col-lg-4">
             <div class="card card_c mb-3">
                <div class="inner-img">
-                  <img src="http://34.226.78.219:8080/api_covid19/public/api/imgPoints/{{$points->atp_img}}" class="card-img-top img-fluid" alt="atp_img">
+                  <img src="http://34.226.78.219:8080/api_covid19/public/api/imgPoints/{{$points->atp_img}}" onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}" class="card-img-top img-fluid" alt="atp_img">
                </div>
                <div class="card-body">
                   <p class="card-title text-secondary font-weight-bold text-justify mh_3">{{$points->atp_name}}</p>
                   <p class="card-text text-secondary text-justify">{{$points->atp_address}}</p>
+                  
+                  <div class="d-flex justify-content-center">
+                     <a name="" id="" 
+                     @if ($points->atp_url == null)
+                     class="btn m-1 btn_circl_outl_g" href="#"
+                     @else
+                     class="btn m-1 btn_circl_outl_p" href="{{$points->atp_url}}" target="_blank"
+                     @endif
+                     role="button" title="@lang('string.website')"><i class="far fa-window-maximize"></i></a>
+               </div>
                </div>
                
                @auth

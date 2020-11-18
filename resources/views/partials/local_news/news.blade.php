@@ -1,5 +1,5 @@
 <div class="row">
-   <div class="col-12 text-center mb-4">
+   <div class="col-12 text-center mb-3">
       @if(session('autenticacion')->usr_type_id == 2)
       <a name="" id="" class="btn btn_outl_p rounded-pill" href="{{route('regNews', ['tipo'=> "locales"])}}" role="button"><i class="fas fa-plus mr-2"></i>@lang('string.register')</a>
       @endif
@@ -23,7 +23,14 @@
             <p class="card-text text-secondary text-justify">{{$news->nws_desc}}</p>
             <p class="card-text text_p">{{$news->nws_source}}</p>
             <div class="d-flex justify-content-between">
-               <a name="" id="" class="text_a" role="link" href="{{$news->nws_url}}" target="_blank">@lang('string.view_more')</a>
+               <a name="" id="" class="text_a"
+               @if ($news->nws_url != null)
+                  href="{{$news->nws_url}}" target="_blank"
+               @else
+                  href="#"
+               @endif
+               role="link">@lang('string.view_more')</a>
+               
                <p class="card-text text-secondary">{{Carbon\Carbon::parse($news->nws_date)->format('h:i a')}}</p>
             </div>
          </div>

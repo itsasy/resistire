@@ -10,7 +10,7 @@
    <h4 class="header_title d-block d-md-none">@lang('string.news_of') {{$name}}</h4>
 </div>
 
-<div class="container pt-4">
-    @include('partials.local_news.news')
+<div class="container pt-3">
+   @include('partials.local_news.news')
 </div>
 @endsection
