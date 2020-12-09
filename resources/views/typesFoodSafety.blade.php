@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @include('layouts.btn_return_map')
-
 @section ('title', 'Seguridad Alimentaria')
-
 @section('content')
 <div class="header pt-5 pt-md-0">
    <h3 class="header_title d-none d-md-block">@lang('string.food_safety')</h3>

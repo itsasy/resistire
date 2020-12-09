@@ -12,8 +12,8 @@
             alt="nws_img">
             <div class="col-12 bg_sh px-1 d-flex justify-content-between mt-n5 pt-3">
                <p class="text-white text-truncate"><small>{{$news->nws_author}}</small></p>
-               <p class="text_p bg-white rounded-pill px-2 text-truncate">
-                  <i class="far fa-calendar-alt"></i>
+               <p class="text_p bg-white rounded-pill px-2 d-flex flex-nowrap align-items-center">
+                  <i class="far fa-calendar-alt mr-1"></i>
                   <small class="font-weight-bold">{{Carbon\Carbon::parse($news->nws_date)->format('d/m/Y')}}</small>
                </p>
             </div>

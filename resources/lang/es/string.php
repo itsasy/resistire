@@ -215,4 +215,31 @@ return [
    /*NEWS*/
    'news_of' => 'Noticias de',
    'view_more' => 'Ver más..',
+   
+   /*REGISTER NEWS*/
+   'reg_news' => 'Registro de noticia',
+   'of' => 'de',
+   'nationals' => 'Nacionales',
+   'world' => 'Mundiales',
+   'fake' => 'Fake',
+   'author_data'=>'Datos del autor',
+   'local_news'=>'Noticias locales',
+   'national_news'=>'Noticias Nacionales',
+   'world_news'=>'Noticias Mundiales',
+   'fake_news'=>'Noticias Fake',
+   'official_communiques'=>'Comunicados oficiales',
+   'publication_data'=>'Datos de publicación',
+   'source_data'=>'Datos de fuente',
+   'hour' => 'Hora',
+   'select_hour'=>'Seleccione hora',
+   'hour_selected'=>'Hora seleccionada',
+   'webaddress'=>'Dirección web',
+   'enter_webaddress' => 'Ingrese dirección web',
+   'webaddress_entered' => 'Dirección web ingresada',
+   
+   /*UPDATE NEWS*/
+   'update_news' => 'Actualización de noticia',
+   
+   /*AREAS*/
+   'areas' => 'Áreas'
 ];

@@ -28,7 +28,11 @@
 }
 
 /* BACKGROUNDS */
-.bg_primary {
+/*.bg_primary {
+    background: var(--c-primary);
+}*/
+
+.bg_p {
     background: var(--c-primary);
 }
 

@@ -23,9 +23,10 @@
       <div class="col-md-6 col-lg-4 mb-3">
          <div class="card card_c">
             <div class="inner-img">
-               <a name="" id="" class="" href="" target="_blank" role="button">
+               <!--<a name="" id="" class="" href="" target="_blank" role="button">
                   <img src="{{url('/'). '/api/imageCompany/' . $element->cmp_img}}" onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}" class="card-img-top img-fluid">
-               </a>
+               </a>-->
+               <img src="{{url('/'). '/api/imageCompany/' . $element->cmp_img}}" onerror="this.onerror=null; this.src='{{asset('images/img_default.png')}}" class="card-img-top img-fluid">
             </div>
             <div class="card-body">
                <p class="card-title text-secondary font-weight-bold text-justify">{{$element->cmp_name}}</p>

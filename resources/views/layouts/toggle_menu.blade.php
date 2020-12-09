@@ -11,7 +11,7 @@
          <i class="fas fa-times mr-0 mr-md-2"></i>
          <spam class="d-none d-md-inline">@lang('string.close')</spam>
       </a>
-      
+
       <a name="" id="" class="btn btn_transp mt-2" href="{{route('cerrar-sesion')}}" role="button">
          <i class="fas fa-sign-out-alt mr-0 mr-md-2"></i>
          <spam>@lang('string.logout')</spam>
@@ -19,26 +19,29 @@
    </div>
    <div class="menu_content_area pt-5 px-0 px-md-1 px-lg-5">
       <div class="menu_content_buttons">
-         <a href="{{route('alertList')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+         <a href="{{route('alertList')}}"
+            class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-exclamation-circle fa-lg"></i>@lang('string.incidents')
          </a>
 
-         <a href="{{route('mostrarEstadisticas')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+         <a href="{{route('mostrarEstadisticas')}}"
+            class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-chart-bar fa-lg"></i>@lang('string.statistics')
          </a>
 
-         <a href="{{route('mapAssociate')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+         <!--<a href="{{route('mapAssociate')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-th-large fa-lg"></i>@lang('string.responsible_companies')
-         </a>
+         </a>-->
 
-         <a href="{{route('public_institutions')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+         <!--<a href="{{route('public_institutions')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-th-large fa-lg"></i>@lang('string.public_institutions')
-         </a>
-         <a href="{{route('alimentos.index')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
-            <i class="fas fa-th-large fa-lg"></i>@lang('string.food_safety')
-         </a>
+         </a>-->
 
-         @if(auth()->user()->usr_type_id != 1)
+         <!--<a href="{{route('alimentos.index')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+            <i class="fas fa-th-large fa-lg"></i>@lang('string.food_safety')
+         </a>-->
+
+         <!--@if(auth()->user()->usr_type_id != 1)
          <a href="{{route('local_news')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-th-large fa-lg"></i>@lang('string.news')
          </a>
@@ -47,12 +50,14 @@
          <a href="{{route('noticias', ['seccion'=> "administrador"])}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-th-large fa-lg"></i>@lang('string.news')
          </a>
-         @endif
-         <a href="{{route('listUsuarios')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
-            <i class="fas fa-th-large fa-lg"></i>@lang('string.users')
-         </a>
-         <a href="{{route('areas')}}" class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+         @endif-->
+         <a href="{{route('areas')}}"
+            class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
             <i class="fas fa-th-large fa-lg"></i>@lang('string.areas')
+         </a>
+         <a href="{{route('listUsuarios')}}"
+            class="btn btn_outl_w p-3 m-2 d-flex justify-content-between align-items-center mb-3 rounded_1 mw_15">
+            <i class="fas fa-th-large fa-lg"></i>@lang('string.users')
          </a>
       </div>
    </div>

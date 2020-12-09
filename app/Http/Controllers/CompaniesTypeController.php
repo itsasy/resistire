@@ -21,7 +21,7 @@ class CompaniesTypeController extends Controller
         return back()->with('message', 'Se ha creado correctamente');
     }
 
-    public function show($id)
+    /*public function show($id)
     {
         $name = tb_company_types::where('id', $id)->get();
 
@@ -32,6 +32,21 @@ class CompaniesTypeController extends Controller
         }
 
         return view('listCompanies', compact('data'))->with(['name' => $name[0]->cmpt_desc]);
+    }*/
+    
+    public function show($id)
+    {
+        $cmp_type = tb_company_types::where('id', $id)->get();
+
+        if (auth()->user()->usr_id_dst == 1090) {
+            $data = tb_companies::where('cmp_id_cmpt', $id)->where('cmp_id_dst', 1090)->get();
+        } elseif (auth()->user()->usr_id_dst == 1347) {
+            $data = tb_companies::where('cmp_id_cmpt', $id)->where('cmp_id_dst', 1347)->get();
+        }else{
+            $data = tb_companies::where('cmp_id_cmpt', $id)->get();
+        }
+
+        return view('listCompanies', compact('data'))->with(['name' => $cmp_type[0]->cmpt_desc]);
     }
 
     public function update(Request $request, $id)

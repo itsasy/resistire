@@ -11,7 +11,7 @@
       <a name="" id="" class="btn btn_outl_p rounded-pill" href="#" role="button" data-toggle="modal" data-target="#excel"><i class="fas fa-download mr-2"></i>@lang('string.export')</a>
    </div>
    <table class="table table-responsive-sm table-bordered table-hover text_list shadow" id="table_alerts">
-      <thead class="bg_primary text-center text-uppercase text-white">
+      <thead class="bg_p text-center text-uppercase text-white">
          <tr>
             <th scope="col">@lang('string.id')</th>
             <th scope="col">@lang('string.user')</th>
