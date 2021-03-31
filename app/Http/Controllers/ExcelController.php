@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
+
 class ExcelController implements FromView
 {
 
@@ -22,18 +23,61 @@ class ExcelController implements FromView
 
     public function view(): View
     {
-        if($this->fecha_inicio == Carbon::now()->format('Y-m-d 00:00:00')){
+        $userType = session('autenticacion')->usr_type_id;
+
+        switch ($userType) {
+            case 1:
+                $alerList = tb_alerts::all();
+                break;
+            case 2:
+                $alerList = tb_alerts::alertsByDist();
+                break;
+            case 4:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(1);
+                break;
+            case 5:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(2);
+                break;
+            case 6:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(3);
+                break;
+            case 7:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(4);
+                break;
+            case 8:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(5);
+                break;
+            case 9:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(6);
+                break;
+            case 10:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(7);
+                break;
+            case 11:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(8);
+                break;
+            case 12:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(9);
+                break;
+            case 13:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(10);
+                break;
+            case 14:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(11);
+                break;
+            case 15:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(12);
+                break;
+        }
+
+        if ($this->fecha_inicio == Carbon::now()->format('Y-m-d 00:00:00')) {
             $fecha_inicio = '2000-01-01 00:00:00';
-        }else{
+        } else {
             $fecha_inicio = $this->fecha_inicio;
         }
-        
-        if (session('autenticacion')->usr_type_id == 2) {
-            $ALERTAS = tb_alerts::whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->where('alt_id_dst', session('autenticacion')->usr_id_dst)->get();
-        }else{
-            $ALERTAS =tb_alerts::whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->get();
-        }
-        
+
+        $ALERTAS = $alerList->whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->get();
+
         foreach ($ALERTAS as $alertas) {
             $alertas->usuario = tb_users::where('id', $alertas->alt_id_usr)->get();
             $alertas->municipal = tb_alert_types::where('id', $alertas->alt_id_altt)->get();

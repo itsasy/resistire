@@ -24,10 +24,11 @@ class adminController extends Controller
     {
         $this->middleware('auth', ['except' => ['index']]);
     }
+
     public function index()
     {
         if (session()->exists('autenticacion')) {
-            return redirect()->route('Mapa',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
+            return redirect()->route('Mapa', [session('distrito'), session('id_distrito'), session('nom_provincia')]);
         }
         return view('login');
     }
@@ -36,13 +37,14 @@ class adminController extends Controller
     {
         $usr_type_id = session('usr_type_id');
         $usr_id_prj = session('usr_id_prj');
-        
+
         return view('map', compact('district', 'iddistrict', 'provincia', 'usr_type_id', 'usr_id_prj'));
     }
 
     public function news($seccion)
     {
         $noticias = tb_news::orderBy('nws_date', 'desc')->get();
+
         return view('blog', compact('noticias'));
     }
 
@@ -68,7 +70,7 @@ class adminController extends Controller
             if ($request->file('nws_image')->isValid()) {
                 $imagen = $request->file('nws_image');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $request->file('nws_image')->extension()));
-                Storage::disk('news')->put($filename,  File::get($imagen));
+                Storage::disk('news')->put($filename, File::get($imagen));
                 $nws->nws_img = $filename;
             }
 
@@ -120,12 +122,12 @@ class adminController extends Controller
                 Storage::disk('news')->delete($nws->nws_img);
                 $imagen = $request->file('nws_image');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('m-d-Y_h-m-s_a.') . $request->file('nws_image')->extension()));
-                Storage::disk('news')->put($filename,  File::get($imagen));
+                Storage::disk('news')->put($filename, File::get($imagen));
                 $nws->nws_img = $filename;
             }
-            
+
             $nws->save();
-            
+
             if ($request->tipo == 'locales') {
                 return redirect()->route('local_news');
             }
@@ -159,7 +161,7 @@ class adminController extends Controller
             if ($request->file('adi_img')->isValid()) {
                 $imagen = $request->file('adi_img');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $request->file('adi_img')->extension()));
-                Storage::disk('infoAdicional')->put($filename,  File::get($imagen));
+                Storage::disk('infoAdicional')->put($filename, File::get($imagen));
                 $info->adi_img = $filename;
             }
 
@@ -170,6 +172,7 @@ class adminController extends Controller
             return redirect()->back();
         }
     }
+
     public function deleteInfo($id)
     {
         try {
@@ -181,11 +184,13 @@ class adminController extends Controller
             return redirect()->back();
         }
     }
+
     public function updateInfo($id)
     {
         $info = tb_infoadi::where('id', $id)->first();
         return view('updateInfoAdicional', compact('info'));
     }
+
     public function saveUpdateInfo(Request $request)
     {
         try {
@@ -206,7 +211,7 @@ class adminController extends Controller
                 Storage::disk('infoAdicional')->delete($info->adi_img);
                 $imagen = $request->file('adi_img');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $request->file('adi_img')->extension()));
-                Storage::disk('infoAdicional')->put($filename,  File::get($imagen));
+                Storage::disk('infoAdicional')->put($filename, File::get($imagen));
                 $info->adi_img = $filename;
             }
 
@@ -216,6 +221,7 @@ class adminController extends Controller
             return redirect()->back();
         }
     }
+
     public function regPoint()
     {
         $district = session('distrito');
@@ -278,6 +284,7 @@ class adminController extends Controller
         $district = session('distrito');
         return view('updatePoint', compact('point', 'district'));
     }
+
     public function saveUpdatePoint(Request $request)
     {
         try {
@@ -341,11 +348,54 @@ class adminController extends Controller
 
     public function alertList()
     {
-        if (session('autenticacion')->usr_type_id == 2) {
-            $list = tb_alerts::where('alt_id_dst', [session('autenticacion')->usr_id_dst])->orderby('alt_date', 'desc')->Paginate(10);
-        } else {
-            $list = tb_alerts::orderby('alt_date', 'desc')->Paginate(10);
+        $userType = session('autenticacion')->usr_type_id;
+
+        switch ($userType) {
+            case 1:
+                $alerList = tb_alerts::all();
+                break;
+            case 2:
+                $alerList = tb_alerts::alertsByDist();
+                break;
+            case 4:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(1);
+                break;
+            case 5:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(2);
+                break;
+            case 6:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(3);
+                break;
+            case 7:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(4);
+                break;
+            case 8:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(5);
+                break;
+            case 9:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(6);
+                break;
+            case 10:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(7);
+                break;
+            case 11:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(8);
+                break;
+            case 12:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(9);
+                break;
+            case 13:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(10);
+                break;
+            case 14:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(11);
+                break;
+            case 15:
+                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(12);
+                break;
         }
+
+        $list = $alerList->orderby('alt_date', 'desc')->Paginate(10);
         return view('alertList', compact('list'));
     }
 
@@ -396,7 +446,7 @@ class adminController extends Controller
     public function listCompanies()
     {
         if (session()->exists('autenticacion')) {
-            return redirect()->route('MapAsociates',  [session('distrito'), session('id_distrito'), session('nom_provincia')]);
+            return redirect()->route('MapAsociates', [session('distrito'), session('id_distrito'), session('nom_provincia')]);
         }
     }
 
@@ -408,7 +458,7 @@ class adminController extends Controller
     public function regCompanies()
     {
         $categories = tb_company_types::pluck('cmpt_desc', 'id');
-        
+
         return view('regCompanies', compact('categories'));
     }
 
