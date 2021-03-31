@@ -26,12 +26,10 @@
                <div class="form-group col-md-6">
                   <label for="cmp_id_cmpt">@lang('string.category')</label>
                   <select name="cmp_id_cmpt" class="form-control " required>
-                     <option value="" selected="true" disabled="disabled">@lang('string.select')</option>
-                     <option value="1">@lang('string.cmp_1_name')</option>
-                     <option value="2">@lang('string.cmp_2_name')</option>
-                     <option value="3">@lang('string.cmp_3_name')</option>
-                     <option value="4">@lang('string.cmp_4_name')</option>
-                     <option value="5">@lang('string.cmp_5_name')</option>
+                     <option selected="true" disabled="disabled">@lang('string.select')</option>
+                     @foreach($categories as $id => $category)
+                        <option value="{{$id}}">{{$category}}</option>
+                     @endforeach
                   </select>
                   <div class="invalid-feedback">@lang('string.select_category')</div>
                   <div class="valid-feedback">@lang('string.category_selected')</div>

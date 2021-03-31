@@ -33,35 +33,55 @@ var customIcons = {
     },
     '8': {
         icon: 'marker_alert_08.svg'
+    },
+    '9': {
+        icon: 'marker_alert_01.svg'
+    },
+    '10': {
+        icon: 'marker_alert_10.svg'
+    },
+    '11': {
+        icon: 'marker_alert_11.svg'
+    },
+    '12': {
+        icon: 'marker_alert_12.svg'
     }
 };
 
 var CoordendasCLimas = [];
-
-    function iniciarMap() {
-        
-        
-       $.getJSON("http://34.226.78.219:8080/api_covid19/public/puntos_centrales.json").done(function (model1) {
-            
-
-       console.log("DATOS___JSON___" + model1.CenterPoint[Distrito.toLowerCase()]);
-
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: model1.CenterPoint[Distrito.toLowerCase()],
-                zoom: 13,
-                mapTypeId: 'roadmap',
-                zoomControl: true,
-                mapTypeControl: false,
-                scaleControl: false,
-                streetViewControl: false,
-                rotateControl: true,
-                fullscreenControl: false,
-            });
     
-             DownloadMarker();
-             DownloadMarkerAtencion();
-             obtenerDistritos();
-        });
+    function iniciarMap() {
+        console.log("Distrito: "+Distrito);
+        //if(Distrito.toLowerCase() == "lima"){
+            
+            console.log("Correcto!");
+            
+            $.getJSON("http://34.226.78.219:8080/api_covid19/public/puntos_centrales.json").done(function (model1) {
+            
+           console.log("Distrito: " + Distrito.toLowerCase());
+           console.log("DATOS___JSON___" + model1.CenterPoint[Distrito.toLowerCase()]);
+    
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: model1.CenterPoint[Distrito.toLowerCase()],
+                    zoom: 13,
+                    mapTypeId: 'roadmap',
+                    zoomControl: true,
+                    mapTypeControl: false,
+                    scaleControl: false,
+                    streetViewControl: false,
+                    rotateControl: true,
+                    fullscreenControl: false,
+                });
+        
+                 DownloadMarker();
+                 DownloadMarkerAtencion();
+                 obtenerDistritos();
+            });
+        //}else{
+            //console.log("Distrito no registrado en puntos centrales!");
+        //}
+        
+       
     }
 
     async function obtenerDistritos(){
@@ -111,10 +131,14 @@ function Modal(id, type, marker, placeName, person, patname, matname, phone, dni
 
         if(comentary != null){
             $("#comentario").html("<h5>Comentario</h5><div class='border rounded p-2' id='comentario'><p id='comentary' class='text-secondary m-0'>" + comentary + "</p></div>");
+        }else{
+            $("#comentario").html("");
         }
         
         if (image != null) {
             $("#img").html("<h5 class='mt-3'>Imagen de referencia</h5><div id='img'><img class='img-fluid' src='" + url + image + "'\></div>");
+        } else {
+            $("#img").html("");
         }
         
         $('#Modal_maps_info').modal('show');
@@ -170,7 +194,7 @@ function DownloadMarker(callback) {
     }
     markersArray = [];
 
-    $.getJSON("http://34.226.78.219:8080/api_covid19/public/api/unattendedAlert/"+IdDistrito).done(function (model) {
+    $.getJSON("http://34.226.78.219:8080/api_covid19/public/api/unattendedAlert/"+IdDistrito+"/"+"2").done(function (model) {
 
         nroAlertas = model.length;
         //console.log(model);
@@ -191,21 +215,27 @@ function DownloadMarker(callback) {
             var comentary = model[i].alt_comentary;
             console.log(model[i]);
             if (type == '1') {
-                type = 'SERENAZGO';
+                type = 'SERENAZGO/PNP';
             } else if (type == '3') {
-                type = 'AMBULANCIA';
-            } else if (type == '2') {
                 type = 'BOMBEROS';
+            } else if (type == '2') {
+                type = 'AMBULANCIA';
             } else if (type == '4') {
                 type = 'FISCALIZACIÓN';
             } else if (type=='5'){
                 type = 'VIOLENCIA FAMILIAR'
             } else if (type == '6') {
-                type = 'R.R.S.S.';
+                type = 'RESIDUOS SÓLIDOS';
             } else if (type=='7'){
                 type = 'RECICLAJE'
             } else if (type=='8'){
                 type = 'SALUD MENTAL'
+            } else if (type=='10'){
+                type = 'CONSTRUCCIÓN'
+            } else if (type=='11'){
+                type = 'TRÁNSITO Y TRANSPORTE'
+            } else if (type=='12'){
+                type = 'COMERCIO AMBULATORIO'
             }
 
             var icon = customIcons[model[i].alt_id_altt] || {};

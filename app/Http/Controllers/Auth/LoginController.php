@@ -13,39 +13,48 @@ class LoginController extends Controller
     
     use AuthenticatesUsers;
 
-
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
-            Auth::logoutOtherDevices($request->password);
-            if ($request->is('api/login')) {
-                return Auth::user();
-            } else {
+        
+        if ($request->is('api/login')) {
+            
+            if (Auth::attempt(['username'=> $request->username, 'password' => $request->password, 'usr_id_prj' => $request->usr_id_prj])) {
+            
+                Auth::logoutOtherDevices($request->password);
+        
+                if (Auth::user()->usr_type_id == 3) {
+                    return Auth::user();
+                }
+                
+                return response()->json(['mensaje' => 'El logeo falló, intente nuevamente'], 409);
+            }
+                
+        } else {
+            
+            if (Auth::attempt(['username'=> $request->username, 'password' => $request->password])) {
+            
+                Auth::logoutOtherDevices($request->password);
+        
                 if (Auth::user()->usr_type_id == 3) {
                     return back()->with('status', 'No tiene acceso');
                 }
+                
                 $DISTRITO = Auth::user()->district->dst_name;
                 $IDDISTRITO = Auth::user()->district->id;
                 $PROVINCIA = Auth::user()->district->province->prv_name;
-
 
                 session(['autenticacion' => Auth::user()]);
                 session(['distrito' => $DISTRITO]);
                 session(['id_distrito' => $IDDISTRITO]);
                 session(['nom_provincia' => $PROVINCIA]);
                 session(['usr_style' => Auth::user()->usr_style]);
-
+                
                 return redirect()->route('Mapa', ['district' => $DISTRITO, 'iddistrict' => $IDDISTRITO, 'provincia' => $PROVINCIA]);
             }
-        }
-        
-        if ($request->is('api/login')) {
-            return response()->json(['mensaje' => 'El logeo falló, intente nuevamente'], 409);
-        } else {
+            
             return back()->with('status', 'No tiene acceso');
         }
+
     }
     
     public function logout(Request $request) 

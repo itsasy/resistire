@@ -102,5 +102,5 @@
 
 @section('script')
 <script type="text/javascript" src="{{asset('js/maps.js')}}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHeMnFqK0Z-SnBltWBsKdhks6izYFGajI&libraries=geometry&&callback=iniciarMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHeMnFqK0Z-SnBltWBsKdhks6izYFGajI&callback=iniciarMap&libraries=geometry"></script>
 @endsection

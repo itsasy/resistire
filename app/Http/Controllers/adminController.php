@@ -12,6 +12,7 @@ use App\Models\tb_alerts;
 use App\Models\tb_infoadi;
 use App\Models\tb_companies;
 use App\Models\tb_district;
+use App\Models\tb_company_types;
 use Storage;
 use File;
 use Carbon\Carbon;
@@ -403,7 +404,9 @@ class adminController extends Controller
 
     public function regCompanies()
     {
-        return view('regCompanies');
+        $categories = tb_company_types::pluck('cmpt_desc', 'id');
+        
+        return view('regCompanies', compact('categories'));
     }
 
     public function saveCompanies(Request $request, tb_companies $tb_companies)

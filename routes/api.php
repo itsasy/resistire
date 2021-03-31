@@ -72,7 +72,8 @@ Route::group(['prefix' => 'departments'], function () {
     Route::get('/province/district/{id}', 'departmentController@showDistrictbyId');
 });
 
-Route::get('/unattendedAlert/{idDistrict}', 'alertsController@unattendedAlert');
+Route::get('/unattendedAlert/{idDistrict}/{idproject}', 'alertsController@unattendedAlert');
+Route::get('/unattendedAlertNew/{idDistrict}/{idproject}/{idType}', 'alertsController@unattendedAlertNew');
 Route::put('/updateAlert/{id}', 'alertsController@updateAlert');
 Route::get('/imgPoints/{fileName}', 'pointsController@imagePoints');
 Route::get('/imageAlert/{fileName}', 'alertsController@imageAlert');

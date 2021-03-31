@@ -120,6 +120,9 @@ return [
    'alt_6_name' => 'Residuos solidos',
    'alt_7_name' => 'Reciclaje',
    'alt_8_name' => 'Salud mental',
+   'alt_10_name' => 'Construcción',
+   'alt_11_name' => 'Tránsito y Transporte',
+   'alt_12_name' => 'Comercio Ambulatorio',
    'alt_1_name_yauyos' => 'Serenazgo/PNP',
    'alt_4_name_yauyos' => 'SISFOH',
    

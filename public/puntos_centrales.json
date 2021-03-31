@@ -6,11 +6,15 @@
                  "san juan de lurigancho":  {  "lat" : -11.978963, "lng" : -76.992415 },
                  "santa anita":             {  "lat" : -12.042518, "lng" : -76.971151},
                  "la victoria":             {  "lat" : -12.071807, "lng" : -77.016990 },
-                 "ate":                     {  "lat" : -12.0261, "lng" : -76.9192 },
+                 "ate":                     {  "lat" : -12.0261,  "lng" : -76.9192 },
                  "la molina":               {  "lat" : -12.086045, "lng" : -76.928473 },
-                 "lima":                    {  "lat" : -12.045956, "lng" : -77.042856 }
+                 "lima":                    {  "lat" : -12.045956, "lng" : -77.042856 },
+                 "magdalena del mar":       {  "lat" : -12.090687, "lng" : -77.070094 },
+                 "san martin de porres":    {  "lat" : -11.981589, "lng" : -77.096263},
+                 "jesus maria":             {  "lat" : -12.075302, "lng" : -77.046779},
+                 "san juan de miraflores":  {  "lat" : -12.158578, "lng" :-76.973056}
 
-
+ 
 } 
     
 }

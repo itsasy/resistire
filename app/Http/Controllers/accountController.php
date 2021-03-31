@@ -30,6 +30,7 @@ class accountController extends Controller
             $users->usr_email = $request->usr_email;
             $users->usr_phone_1 = $request->usr_phone_1;
             $users->username = $request->usr_document;
+            $users->usr_id_prj = $request->usr_id_prj;
             
             $pass = substr($users->usr_patname, 0, 3) . substr($request->usr_document, 0, 5);
             $users->password = bcrypt($pass);

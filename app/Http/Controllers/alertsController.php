@@ -15,6 +15,7 @@ use App\Models\tb_district;
 use App\Events\NuevaAlerta;
 use Storage;
 use Carbon\Carbon;
+use App\Models\tb_user_types;
 
 class alertsController extends Controller
 {
@@ -42,6 +43,7 @@ class alertsController extends Controller
             $alerts->alt_address = $request->alt_address;
             $alerts->alt_latitude = $request->alt_latitude;
             $alerts->alt_longitude = $request->alt_longitude;
+            $alerts->alt_id_prj = $request->alt_id_prj;
             $alerts->alt_date = $date;
 
             $alerts->save();
@@ -151,10 +153,18 @@ class alertsController extends Controller
         return response()->json(['type' => 'success', 'message' => 'enviado'], 200); 
     }
     
-    public function unattendedAlert($idDistrict)
+    public function unattendedAlert($idDistrict, $idproject)
     {
         
-        return tb_alerts::where('alt_id_dst' , $idDistrict)->where('alt_attended', '0')->with('info_user')->get();
+        return tb_alerts::where('alt_id_dst' , $idDistrict)->where('alt_attended', '0')->where('alt_id_prj', $idproject)->with('info_user')->get();
+    }
+    
+    public function unattendedAlertNew($idDistrict, $idproject, $idType)
+    {
+        
+        dd(tb_user_types::all());
+        
+        return tb_alerts::where('alt_id_dst' , $idDistrict)->where('alt_attended', '0')->where('alt_id_prj', $idproject)->with('info_user')->get();
     }
     
     public function updateAlert($id)

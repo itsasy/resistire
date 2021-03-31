@@ -54,6 +54,15 @@
             @case(8)
             <td>@lang('string.alt_8_name')</td>
             @break
+            @case(10)
+            <td>@lang('string.alt_10_name')</td>
+            @break
+            @case(11)
+            <td>@lang('string.alt_11_name')</td>
+            @break
+            @case(12)
+            <td>@lang('string.alt_12_name')</td>
+            @break
             @endswitch
 
             <td>{{$alerts->alt_address}}</td>

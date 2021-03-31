@@ -70,6 +70,19 @@ class pointsController extends Controller
     {
         try {
             $tb_points = tb_points::where([['atp_id_dst', $atp_id_dst],['atp_id_atpt', 2]])->with('info_district')->get();
+            
+            return $tb_points;
+            
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function showPointsandStaticPointsbyDistrict($atp_id_dst)
+    {
+        try {
+            $tb_points = tb_points::where([['atp_id_dst', $atp_id_dst],['atp_id_atpt', 2]])->with('info_district')->get();
+            //TIPO 1  = STATIC PONITS
             $tb_points2 = tb_points::where('atp_id_atpt', 1)->with('info_district')->get();
             $tb_points_final = array_merge(json_decode($tb_points), json_decode($tb_points2));
             
