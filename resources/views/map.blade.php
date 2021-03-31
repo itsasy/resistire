@@ -18,7 +18,9 @@
       <div id="map" class="map"></div>
       <p class="text-secondary" id="district" hidden>{{$district}}</p>
       <p class="text-secondary" id="iddistrict" hidden>{{$iddistrict}}</p>
-      <p class="text-sdsfecondary" id="provincia" hidden>{{$provincia}}</p>
+      <p class="text-secondary" id="provincia" hidden>{{$provincia}}</p>
+      <p class="text-secondary" id="usr_type_id" hidden>{{$usr_type_id}}</p>
+      <p class="text-secondary" id="usr_id_prj" hidden>{{$usr_id_prj}}</p>
    </div>
 
    <!-- ************************************* -->

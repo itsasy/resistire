@@ -8,6 +8,9 @@ var Distrito = $('#district').text();
 var IdDistrito = $('#iddistrict').text();
 var Provincia = $('#provincia').text();
 
+var usr_id_prj = $('#usr_id_prj').text();
+var usr_type_id = $('#usr_type_id').text();
+
 
 var customIcons = {
     '1': {
@@ -194,7 +197,7 @@ function DownloadMarker(callback) {
     }
     markersArray = [];
 
-    $.getJSON("http://34.226.78.219:8080/api_covid19/public/api/unattendedAlert/"+IdDistrito+"/"+"2").done(function (model) {
+    $.getJSON("http://34.226.78.219:8080/api_covid19/public/api/unattendedAlertNew/"+IdDistrito+"/"+usr_id_prj+"/"+usr_type_id).done(function (model) {
 
         nroAlertas = model.length;
         //console.log(model);

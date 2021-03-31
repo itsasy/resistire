@@ -48,6 +48,8 @@ class LoginController extends Controller
                 session(['id_distrito' => $IDDISTRITO]);
                 session(['nom_provincia' => $PROVINCIA]);
                 session(['usr_style' => Auth::user()->usr_style]);
+                session(['usr_type_id' => Auth::user()->usr_type_id]);
+                session(['usr_id_prj' => Auth::user()->usr_id_prj]);
                 
                 return redirect()->route('Mapa', ['district' => $DISTRITO, 'iddistrict' => $IDDISTRITO, 'provincia' => $PROVINCIA]);
             }

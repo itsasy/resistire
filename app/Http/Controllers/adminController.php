@@ -34,7 +34,10 @@ class adminController extends Controller
 
     public function Mapa($district, $iddistrict, $provincia)
     {
-        return view('map', compact('district', 'iddistrict', 'provincia'));
+        $usr_type_id = session('usr_type_id');
+        $usr_id_prj = session('usr_id_prj');
+        
+        return view('map', compact('district', 'iddistrict', 'provincia', 'usr_type_id', 'usr_id_prj'));
     }
 
     public function news($seccion)
