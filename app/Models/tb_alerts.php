@@ -20,17 +20,20 @@ class tb_alerts extends Model
         return $this->belongsTo('App\Models\tb_district', 'alt_id_dst', 'id');
     }
 
-    public function scopeAlertsByTypeAndProject($query, $type)
-    {
-        $projectId = session('usr_id_prj');
-
-        return $query->where(['alt_id_altt' => $type, 'alt_id_prj' => $projectId]);
-    }
-
-    public function scopeAlertsByDist($query)
+    public function scopeAlertsByDist($query, $userDist = 0)
     {
         $userDist = session('autenticacion')->usr_id_dst;
-        return $query->where(['alt_id_dst' => $userDist]);
+
+        return $query->where('alt_id_dst', $userDist);
+    }
+
+    public function scopeAlertsByTypeAndProject($query, $type, $project = null)
+    {
+        if (session('usr_id_prj')) {
+            $project = session('usr_id_prj');
+        }
+
+        return $query->where(['alt_id_altt' => $type, 'alt_id_prj' => $project]);
     }
 
 }

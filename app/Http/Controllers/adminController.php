@@ -352,7 +352,7 @@ class adminController extends Controller
 
         switch ($userType) {
             case 1:
-                $alerList = tb_alerts::all();
+                $list = tb_alerts::Paginate(15);
                 break;
             case 2:
                 $alerList = tb_alerts::alertsByDist();
@@ -395,7 +395,10 @@ class adminController extends Controller
                 break;
         }
 
-        $list = $alerList->orderby('alt_date', 'desc')->Paginate(10);
+        if ($userType != 1) {
+            $list = $alerList->orderby('alt_date', 'desc')->Paginate(15);
+        }
+
         return view('alertList', compact('list'));
     }
 

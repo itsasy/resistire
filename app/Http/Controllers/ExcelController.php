@@ -23,12 +23,41 @@ class ExcelController implements FromView
 
     public function view(): View
     {
+
+        if ($this->fecha_inicio == Carbon::now()->format('Y-m-d 00:00:00')) {
+            $fecha_inicio = '2000-01-01 00:00:00';
+        } else {
+            $fecha_inicio = $this->fecha_inicio;
+        }
+
+
         $userType = session('autenticacion')->usr_type_id;
 
+        if ($userType != 1) {
+            $ALERTAS = $this->alertsBy($userType)->whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->get();
+        } else {
+            $ALERTAS = tb_alerts::whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->get();
+        }
+
+        foreach ($ALERTAS as $alertas) {
+            $alertas->usuario = tb_users::where('id', $alertas->alt_id_usr)->get();
+            $alertas->municipal = tb_alert_types::where('id', $alertas->alt_id_altt)->get();
+        }
+
+        $exc = view('excel', [
+            'data' => $ALERTAS
+        ]);
+
+        return $exc;
+    }
+
+    /**
+     * @param $userType
+     * @return tb_alerts[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function alertsBy($userType)
+    {
         switch ($userType) {
-            case 1:
-                $alerList = tb_alerts::all();
-                break;
             case 2:
                 $alerList = tb_alerts::alertsByDist();
                 break;
@@ -69,22 +98,6 @@ class ExcelController implements FromView
                 $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(12);
                 break;
         }
-
-        if ($this->fecha_inicio == Carbon::now()->format('Y-m-d 00:00:00')) {
-            $fecha_inicio = '2000-01-01 00:00:00';
-        } else {
-            $fecha_inicio = $this->fecha_inicio;
-        }
-
-        $ALERTAS = $alerList->whereBetween('alt_date', [$fecha_inicio, $this->fecha_fin])->get();
-
-        foreach ($ALERTAS as $alertas) {
-            $alertas->usuario = tb_users::where('id', $alertas->alt_id_usr)->get();
-            $alertas->municipal = tb_alert_types::where('id', $alertas->alt_id_altt)->get();
-        }
-        $exc = view('excel', [
-            'data' => $ALERTAS
-        ]);
-        return $exc;
+        return $alerList;
     }
 }
