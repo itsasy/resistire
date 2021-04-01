@@ -59,43 +59,43 @@ class ExcelController implements FromView
     {
         switch ($userType) {
             case 2:
-                $alerList = tb_alerts::alertsByDist();
+                $alerList = tb_alerts::alertsByProject()->alertsByDist();
                 break;
             case 4:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(1);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(1);
                 break;
             case 5:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(2);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(2);
                 break;
             case 6:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(3);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(3);
                 break;
             case 7:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(4);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(4);
                 break;
             case 8:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(5);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(5);
                 break;
             case 9:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(6);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(6);
                 break;
             case 10:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(7);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(7);
                 break;
             case 11:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(8);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(8);
                 break;
             case 12:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(9);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(9);
                 break;
             case 13:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(10);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(10);
                 break;
             case 14:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(11);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(11);
                 break;
             case 15:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(12);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(12);
                 break;
         }
         return $alerList;

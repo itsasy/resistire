@@ -22,12 +22,15 @@ class alertsController extends Controller
 
     public function index(Request $request)
     {
-        //{url}?type=2&project=2
+        //{url}?type={typeAlertId}&project={projectID}&district={districtID}
 
+        $districtId = $request->query('district');
         $typeAlert = $request->query('type');
         $projectId = $request->query('project');
 
-        return tb_alerts::alertsByTypeAndProject($typeAlert, $projectId)
+        return tb_alerts::alertsByProject($projectId)
+            ->alertsByDist($districtId)
+            ->alertsByType($typeAlert)
             ->with(['info_user', 'info_district'])
             ->orderBy('alt_date', 'DESC')
             ->get();

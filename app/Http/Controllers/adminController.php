@@ -355,43 +355,43 @@ class adminController extends Controller
                 $list = tb_alerts::Paginate(15);
                 break;
             case 2:
-                $alerList = tb_alerts::alertsByDist();
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->count();
                 break;
             case 4:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(1);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(1);
                 break;
             case 5:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(2);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(2);
                 break;
             case 6:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(3);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(3);
                 break;
             case 7:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(4);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(4);
                 break;
             case 8:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(5);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(5);
                 break;
             case 9:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(6);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(6);
                 break;
             case 10:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(7);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(7);
                 break;
             case 11:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(8);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(8);
                 break;
             case 12:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(9);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(9);
                 break;
             case 13:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(10);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(10);
                 break;
             case 14:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(11);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(11);
                 break;
             case 15:
-                $alerList = tb_alerts::alertsByDist()->alertsByTypeAndProject(12);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(12);
                 break;
         }
 
