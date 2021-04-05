@@ -41,9 +41,11 @@ class adminController extends Controller
         return view('map', compact('district', 'iddistrict', 'provincia', 'usr_type_id', 'usr_id_prj'));
     }
 
-    public function news($seccion)
+    public function news()
     {
-        $noticias = tb_news::orderBy('nws_date', 'desc')->get();
+        $noticias = tb_news::byDistrict()
+            ->byProject()
+            ->orderBy('nws_date', 'desc')->get();
 
         return view('blog', compact('noticias'));
     }
@@ -571,7 +573,7 @@ class adminController extends Controller
         if (auth()->user()->usr_type_id != 1) {
             $puntos = tb_points::institutionsByProject()
                 ->institutionsByDistrict()->get();
-        }else{
+        } else {
             $puntos = tb_points::all();
         }
 

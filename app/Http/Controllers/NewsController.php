@@ -11,9 +11,20 @@ use Carbon\Carbon;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return tb_news::orderBy('nws_date', 'desc')->with('info_district')->get();
+        $districtId = $request->query('district');
+        $projectId = $request->query('project');
+        $typeId = $request->query('type');
+
+        $noticias = tb_news::byProject($projectId)
+            ->byDistrict($districtId)
+            ->byType($typeId)
+            ->orderBy('nws_date', 'desc')
+            ->with('info_district')
+            ->get();
+
+        return $noticias;
     }
 
     public function store(Request $request, tb_news $nws)
@@ -30,7 +41,7 @@ class NewsController extends Controller
             if ($request->hasFile('nws_img') && $request->file('nws_img')->isValid()) {
                 $imagen = $request->file('nws_img');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $request->file('nws_img')->extension()));
-                Storage::disk('news')->put($filename,  File::get($imagen));
+                Storage::disk('news')->put($filename, File::get($imagen));
 
                 $nws->nws_img = $filename;
             }
@@ -91,7 +102,7 @@ class NewsController extends Controller
 
                 $imagen = $request->file('nws_img');
                 $filename = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $request->file('nws_img')->extension()));
-                Storage::disk('news')->put($filename,  File::get($imagen));
+                Storage::disk('news')->put($filename, File::get($imagen));
 
                 $nws->nws_img = $filename;
             }
@@ -132,7 +143,7 @@ class NewsController extends Controller
             return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-    
+
     public function localNewsbyDistrict($nws_id_dst)
     {
         try {
