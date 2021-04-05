@@ -44,12 +44,12 @@ class tb_alerts extends Model
 
     public function scopeAlertsByProject($query, $project = null)
     {
-        if (!$project && !session('autenticacion')) {
+        if (!$project && !auth()->check()) {
             return $query;
         }
 
-        if (session('usr_id_prj')) {
-            $project = session('usr_id_prj');
+        if (auth()->check()) {
+            $project = auth()->user()->usr_id_prj;
         }
 
         return $query->where('alt_id_prj', $project);

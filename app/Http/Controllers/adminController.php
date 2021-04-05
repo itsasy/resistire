@@ -348,14 +348,14 @@ class adminController extends Controller
 
     public function alertList()
     {
-        $userType = session('autenticacion')->usr_type_id;
+        $userType = auth()->user()->usr_type_id;
 
         switch ($userType) {
             case 1:
                 $list = tb_alerts::Paginate(15);
                 break;
             case 2:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->count();
+                $alerList = tb_alerts::alertsByProject()->alertsByDist();
                 break;
             case 4:
                 $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(1);
