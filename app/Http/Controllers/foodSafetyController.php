@@ -17,7 +17,8 @@ class foodSafetyController extends Controller
 
     public function index()
     {
-        $data = tb_foodsafety_types::where('fdst_id_dst', auth()->user()->usr_id_dst)->paginate(8);
+        $data = tb_foodsafety_types::byProject()
+            ->byDistrict()->paginate(8);
 
         return view('typesFoodSafety', compact('data'));
     }
@@ -94,8 +95,6 @@ class foodSafetyController extends Controller
 
     public function save_image($image, $model)
     {
-
-
         $name = str_replace(' ', '', (Carbon::parse()->format('d-m-Y_h-m-s_a.') . $image->extension()));
 
         $image->storeAs('foodSafety', $name);

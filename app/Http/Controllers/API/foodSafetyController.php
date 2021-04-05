@@ -9,9 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class foodSafetyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return tb_foodsafety::with('info_district')->get();
+        $districtId = $request->query('district');
+        $projectId = $request->query('project');
+        $typeId = $request->query('type');
+
+        return tb_foodsafety::byProject($projectId)
+            ->byType($typeId)
+            ->byDistrict($districtId)
+            ->with('info_district')
+            ->get();
     }
 
     public function store(Request $request)
@@ -61,7 +69,7 @@ class foodSafetyController extends Controller
             'type' => 'success',
             'message' => 'Se ha actualizado correctamente',
             'data' => $response,
-            'img' => $img ? url('storage/foodSafety/' . $img)  : null
+            'img' => $img ? url('storage/foodSafety/' . $img) : null
         ], 200);
     }
 
@@ -94,14 +102,14 @@ class foodSafetyController extends Controller
 
         return $name;
     }
-    
+
     public function articles_by_district($dst)
     {
         $articles = tb_foodsafety::where('fds_id_dst', $dst)->with('info_district')->get();
 
         return $articles;
     }
-    
+
     public function articles_by_type($type)
     {
         $articles = tb_foodsafety::where('fds_id_fdst', $type)->with('info_foodsafetyTypes')->with('info_district')->get();
