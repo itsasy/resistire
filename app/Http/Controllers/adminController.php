@@ -317,12 +317,14 @@ class adminController extends Controller
 
     public function usersList()
     {
-        if (session('autenticacion')->usr_type_id == 2) {
-            $list = tb_users::where('usr_id_dst', [session('autenticacion')->usr_id_dst])->orderby('created_at', 'desc')->Paginate(10);
+        if (auth()->user()->usr_type_id == 1) {
+            $list = tb_users::orderby('created_at', 'desc')->Paginate(15);
         } else {
-            $list = tb_users::orderby('created_at', 'desc')->Paginate(10);
+            $list = tb_users::usersByTypeProject()
+                ->usersByDistrict()
+                ->orderby('created_at', 'desc')
+                ->Paginate(15);
         }
-
         return view('usersList', compact('list'));
     }
 
@@ -358,40 +360,40 @@ class adminController extends Controller
                 $alerList = tb_alerts::alertsByProject()->alertsByDist();
                 break;
             case 4:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(1);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(1);
                 break;
             case 5:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(2);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(2);
                 break;
             case 6:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(3);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(3);
                 break;
             case 7:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(4);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(4);
                 break;
             case 8:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(5);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(5);
                 break;
             case 9:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(6);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(6);
                 break;
             case 10:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(7);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(7);
                 break;
             case 11:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(8);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(8);
                 break;
             case 12:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(9);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(9);
                 break;
             case 13:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(10);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(10);
                 break;
             case 14:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(11);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(11);
                 break;
             case 15:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByTypeAndProject(12);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(12);
                 break;
         }
 
@@ -563,15 +565,15 @@ class adminController extends Controller
 
     public function public_institutions()
     {
-        $name = tb_district::where('id', auth()->user()->usr_id_dst)->pluck('dst_name')[0];
+        $name = tb_district::where('id', auth()->user()->usr_id_dst)
+            ->pluck('dst_name')[0];
 
-        if (session('autenticacion')->usr_type_id == 2) {
-            $puntos = tb_points::where('atp_id_dst', [session('autenticacion')->usr_id_dst])->get();
-
-            return view('public_institutions', compact('name', 'puntos'));
+        if (auth()->user()->usr_type_id != 1) {
+            $puntos = tb_points::institutionsByProject()
+                ->institutionsByDistrict()->get();
+        }else{
+            $puntos = tb_points::all();
         }
-
-        $puntos = tb_points::get();
 
         return view('public_institutions', compact('name', 'puntos'));
     }

@@ -22,12 +22,12 @@ class tb_alerts extends Model
 
     public function scopeAlertsByDist($query, $userDist = null)
     {
-        if (!$userDist && !session('autenticacion')) {
+        if (!$userDist && !auth()->check()) {
             return $query;
         }
 
-        if (session('autenticacion')) {
-            $userDist = session('autenticacion')->usr_id_dst;
+        if (auth()->check()) {
+            $userDist = auth()->user()->usr_id_dst;
         }
 
         return $query->where('alt_id_dst', $userDist);
@@ -53,5 +53,18 @@ class tb_alerts extends Model
         }
 
         return $query->where('alt_id_prj', $project);
+    }
+
+    public function scopeAlertsByUser($query, $user = null)
+    {
+        if (!$user && !auth()->check()) {
+            return $query;
+        }
+
+        if (auth()->check()) {
+            $user = auth()->user()->id;
+        }
+
+        return $query->where('alt_id_usr', $user);
     }
 }

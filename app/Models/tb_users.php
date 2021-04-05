@@ -18,17 +18,40 @@ class tb_users extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];
     }
-    
+
     public function district()
     {
-     
-        return $this->hasOne(tb_district::class,'id','usr_id_dst');
-
-    
+        return $this->hasOne(tb_district::class, 'id', 'usr_id_dst');
     }
-   
+
+    public function scopeUsersByDistrict($query, $district = null)
+    {
+        if (!$district && !auth()->check()) {
+            return $query;
+        }
+
+        if (auth()->check()) {
+            $district = auth()->user()->usr_id_dst;
+        }
+
+        return $query->where('usr_id_dst', $district);
+    }
+
+    public function scopeUsersByTypeProject($query, $project = null)
+    {
+        if (!$project && !auth()->check()) {
+            return $query;
+        }
+
+        if (auth()->check()) {
+            $project = auth()->user()->usr_id_prj;
+        }
+
+        return $query->Where('usr_id_prj', $project);
+    }
 }

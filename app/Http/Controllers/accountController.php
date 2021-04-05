@@ -11,9 +11,15 @@ use Illuminate\Support\Facades\Mail;
 
 class accountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return tb_users::with('district')->get();
+        $districtId = $request->query('district');
+        $projectId = $request->query('project');
+
+        return tb_users::usersByTypeProject($projectId)
+            ->usersByDistrict($districtId)
+            ->with('district')
+            ->get();
     }
 
     public function store(Request $request, tb_users $users)
@@ -31,15 +37,15 @@ class accountController extends Controller
             $users->usr_phone_1 = $request->usr_phone_1;
             $users->username = $request->usr_document;
             $users->usr_id_prj = $request->usr_id_prj;
-            
+
             $pass = substr($users->usr_patname, 0, 3) . substr($request->usr_document, 0, 5);
             $users->password = bcrypt($pass);
-            
+
             $users->usr_type_id = $request->usr_type_id;
 
-        
+
             if ($users->save()) {
-                
+
                 $this->enviarCorreo($request->usr_document, $pass, $request->usr_email); // ENVIAR CORREO
 
             }
@@ -49,13 +55,13 @@ class accountController extends Controller
             return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-    
-     // FUNCION DE ENVIO DE CORREOS
+
+    // FUNCION DE ENVIO DE CORREOS
     public function enviarCorreo($usuario, $contrasena, $correo_usuario)
     {
         Mail::to($correo_usuario)->send(new CorreosMail($usuario, $contrasena));
     }
-    
+
 
     public function show($id)
     {
@@ -120,21 +126,22 @@ class accountController extends Controller
             return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-    
+
     public function genders()
     {
         return tb_genders::get();
     }
-    
+
     public function gendersbyId($id)
     {
         return tb_genders::where('id', $id)->get();
     }
-    
-    public function userType(){
+
+    public function userType()
+    {
         return tb_user_types::get();
     }
-    
+
     public function showUserbyDocument($document)
     {
         try {
@@ -145,11 +152,11 @@ class accountController extends Controller
             return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-    
+
     public function testEmail()
     {
         $this->enviarCorreo("72686920", "rau7268", "hitc242@gmail.com");
     }
-    
-    
+
+
 }

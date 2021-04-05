@@ -27,8 +27,10 @@ class alertsController extends Controller
         $districtId = $request->query('district');
         $typeAlert = $request->query('type');
         $projectId = $request->query('project');
+        $userId = $request->query('user');
 
         return tb_alerts::alertsByProject($projectId)
+            ->alertsByUser($userId)
             ->alertsByDist($districtId)
             ->alertsByType($typeAlert)
             ->with(['info_user', 'info_district'])
