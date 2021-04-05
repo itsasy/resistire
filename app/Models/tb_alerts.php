@@ -29,7 +29,7 @@ class tb_alerts extends Model
         if (auth()->check()) {
             $userDist = auth()->user()->usr_id_dst;
         }
-
+        
         return $query->where('alt_id_dst', $userDist);
     }
 

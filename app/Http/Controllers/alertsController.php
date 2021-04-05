@@ -22,7 +22,7 @@ class alertsController extends Controller
 
     public function index(Request $request)
     {
-        //{url}?type={typeAlertId}&project={projectID}&district={districtID}
+    //{url}?type={typeAlertId}&project={projectID}&district={districtID}
 
         $districtId = $request->query('district');
         $typeAlert = $request->query('type');
@@ -174,8 +174,10 @@ class alertsController extends Controller
 
     public function unattendedAlertNew($idDistrict, $idproject, $idType)
     {
+        if( (int) $idType == 2) {
+           return tb_alerts::where('alt_id_dst', $idDistrict)->where('alt_attended', '0')->where('alt_id_prj', $idproject)->with('info_user')->get(); 
+        }
         $idAlert = tb_user_types::find($idType)->usrt_id_altt;
-
         return tb_alerts::where('alt_id_dst', $idDistrict)->where('alt_attended', '0')->where('alt_id_prj', $idproject)->where('alt_id_altt', $idAlert)->with('info_user')->get();
     }
 

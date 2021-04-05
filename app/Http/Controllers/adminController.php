@@ -362,40 +362,40 @@ class adminController extends Controller
                 $alerList = tb_alerts::alertsByProject()->alertsByDist();
                 break;
             case 4:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(1);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(1);
                 break;
             case 5:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(2);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(2);
                 break;
             case 6:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(3);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(3);
                 break;
             case 7:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(4);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(4);
                 break;
             case 8:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(5);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(5);
                 break;
             case 9:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(6);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(6);
                 break;
             case 10:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(7);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(7);
                 break;
             case 11:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(8);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(8);
                 break;
             case 12:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(9);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(9);
                 break;
             case 13:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(10);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(10);
                 break;
             case 14:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(11);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(11);
                 break;
             case 15:
-                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByProject(12);
+                $alerList = tb_alerts::alertsByProject()->alertsByDist()->alertsByType(12);
                 break;
         }
 
@@ -596,24 +596,60 @@ class adminController extends Controller
 
     public function toChart()
     {
-        if (session('autenticacion')->usr_type_id == 2) {
-            return tb_alerts::selectRaw("date_format(`alt_date`, '%m') as mes,
-        date_format(`alt_date`, '%Y') as año
-        ,count(*) as total,
-        count(case when alt_id_altt = 1 then 1 end) as Serenazgo,
-        count(case when alt_id_altt = 2 then 1 end) as Ambulancia,
-        count(case when alt_id_altt = 3 then 1 end) as Bomberos,
-        count(case when alt_id_altt = 4 then 1 end) as Fiscalización,
-        count(case when alt_id_altt = 5 then 1 end) as Mujer")->groupBy('año', 'mes')->where('alt_id_dst', [session('autenticacion')->usr_id_dst])->orderBy(db::raw('año desc, mes'), 'desc')->take(12)->get();
-        } else {
-            return tb_alerts::selectRaw("date_format(`alt_date`, '%m') as mes,
-        date_format(`alt_date`, '%Y') as año
-        ,count(*) as total,
-        count(case when alt_id_altt = 1 then 1 end) as Serenazgo,
-        count(case when alt_id_altt = 2 then 1 end) as Ambulancia,
-        count(case when alt_id_altt = 3 then 1 end) as Bomberos,
-        count(case when alt_id_altt = 4 then 1 end) as Fiscalización,
-        count(case when alt_id_altt = 5 then 1 end) as Mujer")->groupBy('año', 'mes')->orderBy(db::raw('año desc, mes'), 'desc')->take(12)->get();
+        $userType = auth()->user()->usr_type_id;
+
+        switch ($userType) {
+            case 1:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->bySerenazgo()
+                    ->byAmbulancia()
+                    ->byBomberos()
+                    ->byFiscalizacion()
+                    ->byMujer();
+                break;
+            case 2:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->bySerenazgo()
+                    ->byAmbulancia()
+                    ->byBomberos()
+                    ->byFiscalizacion()
+                    ->byMujer();
+                break;
+            case 4:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->bySerenazgo();
+                break;
+            case 5:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->byAmbulancia();
+                break;
+            case 6:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->byBomberos();
+                break;
+            case 7:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->byFizcalizacion();
+                break;
+            case 8:
+                $alerts = tb_alerts::dateFormatAndTotal()
+                    ->alertsByDist()
+                    ->byMujer();
+                break;
         }
+
+        return $alerts->groupBy('año', 'mes')
+            ->orderBy(db::raw('año desc, mes'), 'desc')
+            ->take(12)
+            ->get();
     }
 }
