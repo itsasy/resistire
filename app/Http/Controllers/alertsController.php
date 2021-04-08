@@ -197,6 +197,29 @@ class alertsController extends Controller
         $path = public_path() . '/images/alerts/' . $fileName;
         return Response::download($path);
     }
+    
+    /*NEW FUNCTIONS V1_1*/
+    
+    public function show_alert_project_district_user($alt_id_prj, $alt_id_dst, $alt_id_usr)
+    {
+        try {
+            $alerts = tb_alerts::where([['alt_id_prj', $alt_id_prj], ['alt_id_dst', $alt_id_dst], ['alt_id_usr', $alt_id_usr]])->with('info_district')->orderBy('alt_date', 'DESC')->get();
 
+            return $alerts;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function show_alert_project_district_user_alerttype($alt_id_prj, $alt_id_dst, $alt_id_usr, $alt_id_altt)
+    {
+        try {
+            $alerts = tb_alerts::where([['alt_id_prj', $alt_id_prj],['alt_id_dst', $alt_id_dst], ['alt_id_usr', $alt_id_usr], ['alt_id_altt', $alt_id_altt]])->with('info_district')->orderBy('alt_date', 'DESC')->get();
+
+            return $alerts;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
 
 }

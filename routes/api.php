@@ -18,6 +18,8 @@ Route::group(['prefix' => 'news'], function () {
     Route::post("/{id}", 'NewsController@update');
     Route::delete('/{id}', 'NewsController@destroy');
     Route::get('local/district/{idDistrict}', 'NewsController@localNewsbyDistrict');
+    
+    Route::get('project/{idProject}/district/{idDistrict}/type/{idType}', 'NewsController@news_project_district_type');
 });
 
 Route::group(['prefix' => 'adicional'], function () {
@@ -41,6 +43,8 @@ Route::group(['prefix' => 'points'], function () {
     Route::post("/{id}", 'pointsController@update');
     Route::delete('/{id}', 'pointsController@destroy');
     Route::get('district/{idDistrict}', 'pointsController@showPointsbyDistrict');
+    
+    Route::get('project/{idProject}/district/{idDistrict}/type/{idType}', 'pointsController@points_project_district_type');
 });
 
 Route::group(['prefix' => 'users'], function () {
@@ -61,6 +65,9 @@ Route::group(['prefix' => 'alerts'], function () {
     Route::get('user/{idUser}', 'alertsController@showAlertsUser');
     Route::get('district/{idDistrict}', 'alertsController@showAlertsDistrict');
     Route::get('typeUser/{idType}/{idUser}', 'alertsController@showAlertsTypesbyUser');
+    
+    Route::get('project/{idProject}/district/{idDistrict}/user/{idUser}', 'alertsController@show_alert_project_district_user');
+    Route::get('project/{idProject}/district/{idDistrict}/user/{idUser}/alerttype/{idAlertType}', 'alertsController@show_alert_project_district_user_alerttype');
 });
 
 Route::group(['prefix' => 'departments'], function () {
@@ -92,6 +99,9 @@ Route::group(['prefix' => 'companies'], function(){
     Route::get('/{id}', 'companiesController@show');
     Route::get('/district/{district}','companiesController@companies_by_district');
     Route::get('/{district}/{type}', 'companiesController@companies_by_district_and_type');
+    
+    Route::get('project/{idProject}/district/{idDistrict}', 'companiesController@points_project_district');
+    Route::get('project/{idProject}/district/{idDistrict}/type/{idType}', 'companiesController@points_project_district_type');
 });
 
 Route::get('/imageCompany/{fileName}', 'companiesController@imageCompanie');
@@ -102,3 +112,11 @@ Route::get('/foodsafety_dst/{dst}', 'API\foodSafetyController@articles_by_distri
 Route::apiResource('/types_foodsafety', 'API\foodSafetyTypesController');
 Route::get('/types_foodsafety_dst/{dst}', 'API\foodSafetyTypesController@types_by_district');
 Route::get('/food_safety/type/{type}', 'API\foodSafetyController@articles_by_type');
+
+Route::group(['prefix' => 'foodsafetytypes'], function(){
+    Route::get('project/{idProject}/district/{idDistrict}', 'API\foodSafetyTypesController@foodsafetytypes_project_district');
+});
+
+Route::group(['prefix' => 'foodsafety'], function(){
+    Route::get('project/{idProject}/district/{idDistrict}/type/{idType}', 'API\foodSafetyController@foodsafety_project_district_type');
+});

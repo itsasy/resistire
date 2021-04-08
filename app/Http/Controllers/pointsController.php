@@ -178,6 +178,18 @@ class pointsController extends Controller
         $path = public_path() . '/images/points/' . $fileName;
         return Response::download($path);
     }
+    
+    /*NEW FUNCTIONS V1_1*/
+    
+    public function points_project_district_type($atp_id_prj, $atp_id_dst, $atp_id_atpt)
+    {
+        try {
+            $tb_points = tb_points::where([['atp_id_prj', $atp_id_prj],  ['atp_id_dst', $atp_id_dst], ['atp_id_atpt', $atp_id_atpt]])->with('info_district')->get();
 
+            return $tb_points;
 
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
 }

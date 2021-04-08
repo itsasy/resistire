@@ -66,4 +66,17 @@ class foodSafetyTypesController extends Controller
 
         return $articles;
     }
+    
+    /*NEW FUNCTIONS V1_1*/
+    
+    public function foodsafetytypes_project_district($fdst_id_prj, $fdst_id_dst)
+    {
+        try {
+            $foodsafety_types = tb_foodsafety_types::where([['fdst_id_prj', $fdst_id_prj],['fdst_id_dst', $fdst_id_dst]])->with('info_district')->orderBy('created_at', 'DESC')->get();
+
+            return $foodsafety_types;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
 }

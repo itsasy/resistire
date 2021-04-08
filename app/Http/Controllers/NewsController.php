@@ -160,4 +160,17 @@ class NewsController extends Controller
         $path = public_path() . '/images/news/' . $fileName;
         return Response::download($path);
     }
+    
+    /*NEW FUNCTIONS V1_1*/
+    
+    public function news_project_district_type($nws_id_prj, $nws_id_dst, $nws_id_nwst)
+    {
+        try {
+            $nws = tb_news::where([['nws_id_prj', $nws_id_prj], ['nws_id_dst', $nws_id_dst], ['nws_id_nwst', $nws_id_nwst]])->with('info_district')->orderBy('nws_date', 'desc')->get();
+
+            return $nws;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
 }

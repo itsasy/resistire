@@ -46,4 +46,28 @@ class companiesController extends Controller
         $path = public_path() . '/images/companies/' . $fileName;
         return Response::download($path);
     }
+    
+    /*NEW FUNCTIONS V1_1*/
+    
+    public function points_project_district($cmp_id_prj, $cmp_id_dst)
+    {
+        try {
+            $tb_companies = tb_companies::where([['cmp_id_prj', $cmp_id_prj], ['cmp_id_dst', $cmp_id_dst]])->with('info_district')->with('info_company_type')->orderBy('cmp_id_cmpt', 'DESC')->get();
+
+            return $tb_companies;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function points_project_district_type($cmp_id_prj, $cmp_id_dst, $cmp_id_cmpt)
+    {
+        try {
+            $tb_companies = tb_companies::where([['cmp_id_prj', $cmp_id_prj], ['cmp_id_dst', $cmp_id_dst], ['cmp_id_cmpt', $cmp_id_cmpt]])->with('info_district')->with('info_company_type')->orderBy('cmp_id_cmpt', 'DESC')->get();
+
+            return $tb_companies;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
 }
