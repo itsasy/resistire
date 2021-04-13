@@ -85,7 +85,7 @@
                </div>
                <div class="form-group col-12">
                   <label for="nws_image">@lang('string.image')</label>
-                  <input type="file" class="form-control-file text-truncate" name="nws_image" id="img" required>
+                  <input type="file" class="form-control-file text-truncate" name="nws_image" id="img">
                   <div class="invalid-feedback">@lang('string.select_image')</div>
                   <div class="valid-feedback">@lang('string.image_selected')</div>
                   <div class="d-flex justify-content-center pt-3">

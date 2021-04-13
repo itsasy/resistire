@@ -54,7 +54,7 @@
               </div>
               <div class="form-group col-lg-6">
                 <label for="adi_img">Imagen</label>
-                <input type="file" class="form-control-file" name="adi_img" id="img" required>
+                <input type="file" class="form-control-file" name="adi_img" id="img">
                 <div class="invalid-feedback">Seleccione imagen</div>
                 <div class="valid-feedback">Imagen seleccionada</div>
                 <div class="d-flex justify-content-center pt-3">

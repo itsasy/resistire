@@ -8,6 +8,7 @@
 </div>
 <div class="container-fluid mt-n3 mt-md-n5 pb-4 px-0 d-flex justify-content-center">
    <form action="{{route('alimentos.update', $article->id)}}" method="POST" enctype="multipart/form-data" class="col-md-10 col-lg-8 p-2 p-md-4 form_reg shadow border needs-validation" novalidate>
+      @method('PUT')
       {{ csrf_field() }}
       <div class="py-3">
          <div class="d-flex justify-content-center mb-2">
@@ -52,7 +53,7 @@
                </div>
                <div class="form-group col-12">
                   <label for="img">@lang('string.image')</label>
-                  <input type="file" class="form-control-file text-truncate" name="fsd_img" id="img" required>
+                  <input type="file" class="form-control-file text-truncate" name="fds_img" id="img">
                   <div class="invalid-feedback">@lang('string.select_image')</div>
                   <div class="valid-feedback">@lang('string.image_selected')</div>
                   <div class="d-flex justify-content-center pt-3">

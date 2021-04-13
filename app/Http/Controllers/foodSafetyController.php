@@ -17,8 +17,7 @@ class foodSafetyController extends Controller
 
     public function index()
     {
-        $data = tb_foodsafety_types::byProject()
-            ->byDistrict()->paginate(8);
+        $data = tb_foodsafety_types::byDistrict()->paginate(8);
 
         return view('typesFoodSafety', compact('data'));
     }
@@ -32,7 +31,11 @@ class foodSafetyController extends Controller
 
     public function store(Request $request)
     {
-        $user = ['fds_id_usr' => auth()->user()->id, 'fds_id_dst' => auth()->user()->usr_id_dst];
+        $user = [
+            'fds_id_usr' => auth()->user()->id, 
+            'fds_id_dst' => auth()->user()->usr_id_dst,
+            'fdst_id_prj' => auth()->user()->usr_id_prj
+        ];
 
         $article = tb_foodsafety::create($request->all() + $user);
 

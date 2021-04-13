@@ -16,9 +16,13 @@
 
 <div class="container pt-3">
    <div class="row">
+              @if(auth()->user()->usr_type_id == 2 || auth()->user()->usr_type_id == 1)
+
       <div class="col-12 text-center mb-3">
          <a name="" id="" class="btn btn_outl_p rounded-pill" href="{{route('alimentos.create')}}" role="button"><i class="fas fa-plus mr-2"></i>@lang('string.register')</a>
       </div>
+      
+      @endif
       @forelse($data as $element)
       <div class="col-md-6 col-lg-4">
          <div class="card card_c mb-3">
@@ -78,7 +82,7 @@
                </div>
             </div>
             
-            @auth
+        @if(auth()->user()->usr_type_id == 2 || auth()->user()->usr_type_id == 1)
             <div class="d-flex justify-content-end p-1 bg_p">
                <a name="" id="" class="btn btn_circl_outl_w m-1" href="{{route('alimentos.edit', $element->id)}}" role="button" title="@lang('string.update')"><i class="fas fa-pen"></i></a>
                {{--<a name="" id="" class="btn btn_circl_outl_w m-1" href="{{route('alimentos.destroy', $element->id)}}" role="button" title="@lang('string.delete')"><i class="fas fa-times"></i></a>--}}
@@ -88,7 +92,7 @@
                      <button type="submit" class="btn btn_circl_outl_w m-1" title="@lang('string.delete')"><i class="fas fa-times"></i></button>
                </form>
             </div>
-            @endauth
+            @endif
          </div>
       </div>
       @empty

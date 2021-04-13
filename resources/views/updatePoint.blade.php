@@ -44,7 +44,7 @@
                </div>
                <div class="form-group col-lg-12">
                   <label for="img">@lang('string.image')</label>
-                  <input type="file" class="form-control-file text-truncate" name="img" id="img" required>
+                  <input type="file" class="form-control-file text-truncate" name="img" id="img">
                   <div class="invalid-feedback">@lang('string.select_image')</div>
                   <div class="valid-feedback">@lang('string.image_selected')</div>
                   <div class="d-flex justify-content-center pt-3">
