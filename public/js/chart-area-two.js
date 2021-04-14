@@ -69,7 +69,7 @@ export {
 };
 if (SumaObjeto(myValues)['Serenazgo'] != undefined && SumaObjeto(myValues)['Serenazgo'] != 0) {
     Dataset.push({
-        label: 'Serenazgo/PNP',
+        label: 'Serenazgo',
         data: Serenazgo,
         borderColor: "#00429d",
     })
@@ -111,7 +111,7 @@ if (SumaObjeto(myValues)['Mujer'] != undefined && SumaObjeto(myValues)['Mujer'] 
 
 if (SumaObjeto(myValues)['Solidos'] != undefined && SumaObjeto(myValues)['Solidos'] != 0) {
     Dataset.push({
-        label: 'Residuos Sólidos',
+        label: 'Solidos',
         data: Solidos,
         borderColor: "#00B4DB",
     })
@@ -127,7 +127,7 @@ if (SumaObjeto(myValues)['Reciclaje'] != undefined && SumaObjeto(myValues)['Reci
 
 if (SumaObjeto(myValues)['Mental'] != undefined && SumaObjeto(myValues)['Mental'] != 0) {
     Dataset.push({
-        label: 'Salud Mental',
+        label: 'Mental',
         data: Mental,
         borderColor: "#ffa59e",
 
@@ -135,7 +135,7 @@ if (SumaObjeto(myValues)['Mental'] != undefined && SumaObjeto(myValues)['Mental'
 }
 if (SumaObjeto(myValues)['Covid'] != undefined && SumaObjeto(myValues)['Covid'] != 0) {
     Dataset.push({
-        label: 'Covid-19',
+        label: 'Covid',
         data: Covid,
         borderColor: "#f4777f",
     })
@@ -149,12 +149,12 @@ if (SumaObjeto(myValues)['Construccion'] != undefined && SumaObjeto(myValues)['C
 }
 if (SumaObjeto(myValues)['Transito'] != undefined && SumaObjeto(myValues)['Transito'] != 0) {
     Dataset.push({
-        label: 'Tránsito y transporte',
+        label: 'Transito',
         data: Transito,
         borderColor: "#be214d",
     })
 }
-if (SumaObjeto(myValues)['Comercio Ambulatorio'] != undefined && SumaObjeto(myValues)['Ambulante'] != 0) {
+if (SumaObjeto(myValues)['Ambulante'] != undefined && SumaObjeto(myValues)['Ambulante'] != 0) {
     Dataset.push({
         label: 'Ambulante',
         data: Ambulante,
