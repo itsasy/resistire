@@ -75,6 +75,7 @@ Route::group(['prefix' => 'departments'], function () {
     Route::get('/province/{id}', 'departmentController@showProvince');
     Route::get('/district/{id}', 'departmentController@showDistrict');
     Route::get('/location/{latitude}/{longitude}', 'departmentController@getLocation');
+    Route::get('/location/rank/{id_project}/{latitude}/{longitude}', 'departmentController@getLocationRank');
     Route::get('/district/{latitude}/{longitude}', 'departmentController@showDistrictbyLatLon');
     Route::get('/province/district/{id}', 'departmentController@showDistrictbyId');
 });

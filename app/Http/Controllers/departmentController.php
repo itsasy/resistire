@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\tb_province;
 use App\Models\tb_district;
 use App\Models\tb_departments;
+use App\Models\tb_projects;
+
 
 class departmentController extends Controller
 {
@@ -37,6 +39,25 @@ class departmentController extends Controller
             $response = \GoogleMaps::load('directions')->containsLocation($alt_latitude,$alt_longitude);
             
             return $response;
+        } catch (\Exception $e) {
+            return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+    
+    //OBTIENER INFORMACION SI ESTA DENTRO DEL RANGO
+    public function getLocationRank($id_project,$alt_latitude,$alt_longitude){
+        try{
+            $response = \GoogleMaps::load('directions')->containsLocation($alt_latitude,$alt_longitude);
+           
+            $projects = tb_projects::where('id',$id_project)->first();
+            
+            if($projects->prj_id_dst ==  $response){
+                return response()->json(['type' => 'success', 'message' => "Dentro del rango"], 200);
+            }else{
+                return response()->json(['type' => 'success', 'message' => "Fuera del rango"], 500);
+            }
+
+
         } catch (\Exception $e) {
             return response()->json(['type' => 'error', 'message' => $e->getMessage()], 500);
         }

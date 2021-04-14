@@ -31,7 +31,7 @@
             <td>{{$person->usr_document}}</td>
             <td>{{$person->usr_phone_1}}</td>
             <td class="d-flex justify-content-center align-items-center">
-               <a name="" id="" class="btn_circl_outl_p mr-1" href="{{-- {{route('deleteUser', $person->id)}} --}}"
+               <a name="" id="" class="btn_circl_outl_p mr-1" href="{{route('deleteUser', $person->id)}}"
                   role="button">
                   <i class="fas fa-times"></i>
                </a>

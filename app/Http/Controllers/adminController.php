@@ -66,7 +66,7 @@ class adminController extends Controller
             $nws->nws_title = $request->title;
             $nws->nws_desc = $request->description;
             $nws->nws_source = $request->source;
-            $nws->nws_url = $request->url;
+            $nws->nws_url = $request->nws_url;
             $nws->nws_date = Carbon::parse($request->nws_date . ' ' . $request->hora)->format('Y-m-d h:i:s');
 
             if ($request->file('nws_image')->isValid()) {
@@ -247,7 +247,8 @@ class adminController extends Controller
             $tb_points->atp_latitude = $request->latitude_place;
             $tb_points->atp_length = $request->length_place;
             $tb_points->atp_address = $request->address_place;
-
+            $tb_points->atp_id_prj = auth()->user()->usr_id_prj;
+            
             if (session('autenticacion')->usr_type_id == 1) {
                 $distrito = \GoogleMaps::load('directions')->containsLocation($request->latitude_place, $request->length_place);
                 $tb_points->atp_id_dst = $distrito;
@@ -336,6 +337,11 @@ class adminController extends Controller
         return view('editUsers', compact('usuario'));
     }*/
 
+public function deleteUser($id){
+    $user = tb_users::find($id);
+    $user->delete();
+    return redirect()->back();
+}
     public function banUser($id)
     {
         $user = tb_users::find($id);

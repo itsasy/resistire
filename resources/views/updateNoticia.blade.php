@@ -139,8 +139,8 @@
                   <div class="valid-feedback">@lang('string.name_entered')</div>
                </div>
                <div class="form-group col-lg-6 ">
-                  <label for="cmp_url">@lang('string.webaddress')</label>
-                  <input type="url" name="cmp_url" id="cmp_url" class="form-control"
+                  <label for="url">@lang('string.webaddress')</label>
+                  <input type="url" name="url" id="url" class="form-control"
                      placeholder="@lang('string.enter_webaddress')" value="{{$noticias->nws_url}}" maxlength="200"
                      required>
                   <div class="invalid-feedback">@lang('string.enter_webaddress')</div>

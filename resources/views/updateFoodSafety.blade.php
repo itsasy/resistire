@@ -27,7 +27,7 @@
                   <select name="fds_id_fdst" class="form-control " required>
                      <option value="#" disabled="disabled">@lang('string.select')</option>
                      @foreach ($types as $tipo)
-                     <option @if($tipo->id == $article->fds_id_fdst) 'selected' @endif value="{{$tipo->id}}">{{$tipo->fdst_desc}}</option>
+                     <option value="{{$tipo->id}}"  <?php if($article->fds_id_fdst == $tipo->id)  echo "selected"; ?>>{{$tipo->fdst_desc}}</option>
                      @endforeach
                   </select>
                   <div class="invalid-feedback">@lang('string.select_category')</div>

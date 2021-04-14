@@ -23,7 +23,7 @@
    @endif
    
    @stack('styles')
-   <title> RESISTIRÉ {{session('usr_style') }}- @yield('title') </title>
+   <title> RESISTIRÉ </title>
 
 </head>
 

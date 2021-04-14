@@ -18,7 +18,7 @@ class tb_points extends Model
         if (!$dist && !auth()->check()) {
             return $query;
         }
-
+ 
         if (auth()->check()) {
             $dist = auth()->user()->usr_id_dst;
         }

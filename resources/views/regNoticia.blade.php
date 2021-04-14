@@ -149,8 +149,8 @@
                   <div class="valid-feedback">@lang('string.name_entered')</div>
                </div>
                <div class="form-group col-lg-6 ">
-                  <label for="cmp_url">@lang('string.webaddress')</label>
-                  <input type="url" name="cmp_url" id="cmp_url" class="form-control"
+                  <label for="nws_url">@lang('string.webaddress')</label>
+                  <input type="url" name="nws_url" id="nws_url" class="form-control"
                      placeholder="@lang('string.enter_webaddress')" maxlength="200" required>
                   <div class="invalid-feedback">@lang('string.enter_webaddress')</div>
                   <div class="valid-feedback">@lang('string.webaddress_entered')</div>
