@@ -70,26 +70,26 @@
          <div class="sub_title_bg pt-4 px-2 px-sm-3 pb-2 pb-sm-3">
             <div class="form-row">
                <div class="form-group col-lg-6">
-                  <label for="fsd_instagram">@lang('string.instagram')</label>
-                  <input type="url" name="fsd_instagram" id="fsd_instagram" class="form-control" placeholder="@lang('string.enter_instagram')" value="{{$article->fds_instagram}}" maxlength="200">
+                  <label for="fds_instagram">@lang('string.instagram')</label>
+                  <input type="url" name="fds_instagram" id="fds_instagram" class="form-control" placeholder="@lang('string.enter_instagram')" value="{{$article->fds_instagram}}" maxlength="200">
                   <div class="invalid-feedback">@lang('string.enter_instagram')</div>
                   <div class="valid-feedback">@lang('string.instagram_entered')</div>
                </div>
                <div class="form-group col-lg-6">
-                  <label for="fsd_facebook">@lang('string.facebook')</label>
-                  <input type="url" name="fsd_facebook" id="fsd_facebook" class="form-control" placeholder="@lang('string.enter_facebook')" value="{{$article->fds_facebook}}" maxlength="200">
+                  <label for="fds_facebook">@lang('string.facebook')</label>
+                  <input type="url" name="fds_facebook" id="fds_facebook" class="form-control" placeholder="@lang('string.enter_facebook')" value="{{$article->fds_facebook}}" maxlength="200">
                   <div class="invalid-feedback">@lang('string.enter_facebook')</div>
                   <div class="valid-feedback">@lang('string.facebook_entered')</div>
                </div>
                <div class="form-group col-lg-6">
-                  <label for="fsd_youtube">@lang('string.youtube')</label>
-                  <input type="url" name="fsd_youtube" id="fsd_youtube" class="form-control" placeholder="@lang('string.enter_youtube')" value="{{$article->fds_youtube}}" maxlength="200">
+                  <label for="fds_youtube">@lang('string.youtube')</label>
+                  <input type="url" name="fds_youtube" id="fds_youtube" class="form-control" placeholder="@lang('string.enter_youtube')" value="{{$article->fds_youtube}}" maxlength="200">
                   <div class="invalid-feedback">@lang('string.enter_youtube')</div>
                   <div class="valid-feedback">@lang('string.youtube_entered')</div>
                </div>
                <div class="form-group col-lg-6 ">
-                  <label for="fsd_url">@lang('string.webpage')</label>
-                  <input type="url" name="fsd_url" id="fsd_url" class="form-control" placeholder="@lang('string.enter_webpage')" value="{{$article->fds_url}}" maxlength="200">
+                  <label for="fds_url">@lang('string.webpage')</label>
+                  <input type="url" name="fds_url" id="fds_url" class="form-control" placeholder="@lang('string.enter_webpage')" value="{{$article->fds_url}}" maxlength="200">
                   <div class="invalid-feedback">@lang('string.enter_webpage')</div>
                   <div class="valid-feedback">@lang('string.webpage_entered')</div>
                </div>
