@@ -142,7 +142,7 @@ if (SumaObjeto(myValues)['Covid'] != undefined && SumaObjeto(myValues)['Covid'] 
 }
 if (SumaObjeto(myValues)['Construccion'] != undefined && SumaObjeto(myValues)['Construccion'] != 0) {
     Dataset.push({
-        label: 'Construccion',
+        label: 'Construcción',
         data: Construccion,
         borderColor: "#dd4c65",
     })

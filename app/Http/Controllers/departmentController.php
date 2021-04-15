@@ -54,7 +54,7 @@ class departmentController extends Controller
             if($projects->prj_id_dst ==  $response){
                 return response()->json(['type' => 'success', 'message' => "Dentro del rango"], 200);
             }else{
-                return response()->json(['type' => 'success', 'message' => "Fuera del rango"], 500);
+                return response()->json(['type' => 'success', 'message' => "Fuera del rango"], 200);
             }
 
 
