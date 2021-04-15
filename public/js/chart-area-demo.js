@@ -154,9 +154,9 @@ if (SumaObjeto(myValues)['Transito'] != undefined && SumaObjeto(myValues)['Trans
         borderColor: "#be214d",
     })
 }
-if (SumaObjeto(myValues)['Comercio Ambulatorio'] != undefined && SumaObjeto(myValues)['Ambulante'] != 0) {
+if (SumaObjeto(myValues)['Ambulante'] != undefined && SumaObjeto(myValues)['Ambulante'] != 0) {
     Dataset.push({
-        label: 'Ambulante',
+        label: 'Comercio Ambulatorio',
         data: Ambulante,
         borderColor: "#93003a",
     })
