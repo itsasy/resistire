@@ -32,9 +32,9 @@ class foodSafetyController extends Controller
     public function store(Request $request)
     {
         $user = [
-            'fds_id_usr' => auth()->user()->id, 
+            'fds_id_usr' => auth()->user()->id,
             'fds_id_dst' => auth()->user()->usr_id_dst,
-            'fdst_id_prj' => auth()->user()->usr_id_prj
+            'fds_id_prj' => auth()->user()->usr_id_prj
         ];
 
         $article = tb_foodsafety::create($request->all() + $user);

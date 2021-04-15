@@ -11,10 +11,14 @@ class foodSafetyTypesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function store(Request $request)
     {
-        $user = ['fdst_id_usr' => auth()->user()->id, 'fdst_id_dst' => auth()->user()->usr_id_dst];
+        $user = [
+            'fdst_id_usr' => auth()->user()->id,
+            'fdst_id_dst' => auth()->user()->usr_id_dst,
+            'fdst_id_prj' => auth()->user()->usr_id_prj,
+        ];
 
         tb_foodsafety_types::create($request->all() + $user);
 

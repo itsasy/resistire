@@ -56,10 +56,11 @@ class adminController extends Controller
         return view('regNoticia', compact('distrito'));
     }
 
+    /* Noticias */
     public function saveNews(Request $request, tb_news $nws)
     {
         try {
-            $nws->nws_id_usr = session('autenticacion')->id;
+            $nws->nws_id_usr = auth()->id();
             $nws->nws_id_nwst = $request->nws_type;
             $nws->nws_id_dst = session('autenticacion')->usr_id_dst;
             $nws->nws_author = $request->author;
@@ -68,6 +69,7 @@ class adminController extends Controller
             $nws->nws_source = $request->source;
             $nws->nws_url = $request->nws_url;
             $nws->nws_date = Carbon::parse($request->nws_date . ' ' . $request->hora)->format('Y-m-d h:i:s');
+            $nws->nws_id_prj = auth()->user()->usr_id_prj;
 
             if ($request->file('nws_image')->isValid()) {
                 $imagen = $request->file('nws_image');
@@ -224,6 +226,7 @@ class adminController extends Controller
         }
     }
 
+    /* Puntos */
     public function regPoint()
     {
         $district = session('distrito');
@@ -248,7 +251,7 @@ class adminController extends Controller
             $tb_points->atp_length = $request->length_place;
             $tb_points->atp_address = $request->address_place;
             $tb_points->atp_id_prj = auth()->user()->usr_id_prj;
-            
+
             if (session('autenticacion')->usr_type_id == 1) {
                 $distrito = \GoogleMaps::load('directions')->containsLocation($request->latitude_place, $request->length_place);
                 $tb_points->atp_id_dst = $distrito;
@@ -318,6 +321,7 @@ class adminController extends Controller
         }
     }
 
+    /* Users */
     public function usersList()
     {
         if (auth()->user()->usr_type_id == 1) {
@@ -331,17 +335,13 @@ class adminController extends Controller
         return view('usersList', compact('list'));
     }
 
-    /*public function editUsers($id)
+    public function deleteUser($id)
     {
-        $usuario = tb_users::find($id);
-        return view('editUsers', compact('usuario'));
-    }*/
+        $user = tb_users::find($id);
+        $user->delete();
+        return redirect()->back();
+    }
 
-public function deleteUser($id){
-    $user = tb_users::find($id);
-    $user->delete();
-    return redirect()->back();
-}
     public function banUser($id)
     {
         $user = tb_users::find($id);
@@ -480,8 +480,8 @@ public function deleteUser($id){
     public function saveCompanies(Request $request, tb_companies $tb_companies)
     {
         try {
-            $tb_companies->cmp_id_usr = session('autenticacion')->id;
-            $tb_companies->cmp_id_dst = session('autenticacion')->usr_id_dst;
+            $tb_companies->cmp_id_usr = auth()->user()->id;
+            $tb_companies->cmp_id_dst = auth()->user()->usr_id_dst;
             $tb_companies->cmp_id_cmpt = $request->cmp_id_cmpt;
             $tb_companies->cmp_name = $request->cmp_name;
 
@@ -499,6 +499,7 @@ public function deleteUser($id){
             $tb_companies->cmp_instagram = $request->cmp_instagram;
             $tb_companies->cmp_facebook = $request->cmp_facebook;
             $tb_companies->cmp_state = 1;
+            $tb_companies->cmp_id_prj = auth()->user()->usr_id_prj;
 
             $tb_companies->save();
             return redirect()->route('show_asociate', ['id' => $request->cmp_id_cmpt]);

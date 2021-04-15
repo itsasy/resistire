@@ -8,7 +8,7 @@ class tb_foodsafety_types extends Model
 {
     protected $table = "tb_foodsafety_types";
 
-    protected $fillable = ['fdst_id_usr', 'fdst_id_dst', 'fdst_desc'];
+    protected $fillable = ['fdst_id_usr', 'fdst_id_dst', 'fdst_desc', 'fdst_id_prj'];
 
     public function info_district()
     {
